@@ -1,0 +1,131 @@
+.navbar{
+    height: 60px !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.container-fluid{
+    padding: 0 20px 5px !important;
+    height: 100% !important;
+}
+
+.outer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wrapper{
+    height: 40px !important;
+}
+
+.wrapper-middle{
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#logo{
+    height: 35px !important;
+}
+
+.center-icons{
+    background-color: #0D6EFD;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.right-icons{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
+.right-icons .icon-container-right{
+    margin-right: 10px;
+}
+
+.bi{
+    color: white;
+    font-size: 30px;
+}
+
+
+.profileImg{
+    width: 45px !important;
+    height: 45px !important;
+    border-radius: 100%;
+    background-color: rgba(116, 185, 255,0.5);
+}
+
+.profileImg:hover{
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    margin-left: 1px;
+    box-shadow: 0px 0px 16px 5px rgba(116,185,255,0.69);
+    -webkit-box-shadow: 0px 0px 16px 5px rgba(116,185,255,0.69);
+    -moz-box-shadow: 0px 0px 16px 5px rgba(116,185,255,0.69);
+    background-color: rgba(116, 185, 255,1);
+    }
+
+.icon-container-middle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    border-bottom: 3px solid transparent;
+    border-radius: 5%;
+}
+.icon-container-middle:hover{
+    border-bottom: 3px solid white;
+    cursor: pointer;
+    background-color: rgba(116, 185, 255,0.5);
+}
+
+.icon-container-right{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    border-radius: 100%;
+    background-color: rgba(116, 185, 255,0.5);
+}
+.icon-container-right:hover{
+    background-color: rgba(116, 185, 255,1);
+    cursor: pointer;
+}
+
+img.dropdown-toggle{
+    width: 45px !important;
+    height: 45px !important;
+}
+
+img.dropdown-toggle:hover{
+    width: 44px !important;
+    height: 44px !important;
+}
+
+.right-icons ul{
+    width: 130px !important;
+    border: none !important;
+    background: none !important;
+}
+
+.right-icons ul button{
+    width: 130px !important;
+    height: 45px !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 40px !important;
+}
+
+.bi-box-arrow-left, .bi-person{
+    font-size: 22px !important;
+}

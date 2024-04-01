@@ -1,0 +1,264 @@
+@import url('https://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css');
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
+
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    font-family: 'lato', sans-serif;
+    color: #fff;
+}
+
+.row{
+  width: 100%;
+  margin: 0;
+  display: flex;  
+  align-items: center;
+  justify-items: center;
+}
+.wrapper {
+    background:rgba(0, 128,255,0.5);
+    border-radius: 5px;
+    box-shadow: 0 1.5px 0 0 rgba(0,0,0,0.1);
+    display: flex;  
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.logo{
+    margin:0;
+}
+
+.logosignin img{
+    width: 400px;
+}
+.logoSignup img{
+  width: 300px;
+}
+
+.signin-item {
+	color: #ffff;
+	padding:25px 25px;
+	margin: 20px 20px;	
+	border-radius: 3px;
+  width: 100%;
+}
+
+.signinform-wrapper {
+	color: #ffff;
+	padding:25px 20px;
+	margin: 20px 20px;	
+	border-radius: 3px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+
+.signupform-wrapper {
+	color: #ffff;
+  padding: 0 15px;
+	margin: 0;	
+	border-radius: 3px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+
+.form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+
+input {
+  border: 0;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+}
+
+.user:before {
+  content: '\f007';
+  font: 14px fontawesome;
+	color: #fff;
+}
+
+.lock:before {
+  content: '\f023';
+  font: 14px fontawesome;
+	color: #fff;
+}
+
+.form input[type="password"], .form input[type="email"], .form input[type="submit"] {
+  width: 100%;
+}
+
+.form-signin label{
+  border-radius: 0.25rem;
+  padding: 1rem;
+  color: #3A3F44;  
+  background-color: #0080FF;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.form-signin input[type="email"], .form-signin input[type="password"] {
+  background-color: #ffffff;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.form input[type="email"],
+.form input[type="password"],
+.form input[type="text"],
+.form input[type="date"],
+.form input[type="submit"] {
+  border-radius: 0.25rem;
+  padding: 1rem;
+  color: #3A3F44; 
+  background-color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.form input[type="email"]:focus, .form input[type="email"]:hover, .form input[type="password"]:focus, .form input[type="password"]:hover, .form input[type="text"]:focus, .form input[type="text"]:hover, .form input[type="date"]:focus, .form input[type="date"]:hover{
+  background-color: #eeeeee;
+}
+
+.form input[type="submit"] {
+  background-color: #0023FF;
+  color: #eee;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.form input[type="submit"]:focus, .form input[type="submit"]:hover {
+  background-color: #0080FF;
+}
+
+.form-name-fields, .form-field{
+  width: 100%;
+  display: flex;
+  margin-bottom: 2rem;
+}
+.form-gender-fields{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.radio{
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+.radio label{
+  margin-left: 5%;
+  font-size: 25px;
+}
+.form-input{
+  width: 100% !important;
+}
+.form-nameInput{
+  width: 49% !important;
+}
+#firstName{
+  margin-right: 2%;
+}
+input[type=radio] {
+  height:25px; 
+  width:25px; 
+  vertical-align: bottom;
+}
+.maleRadio{
+  margin-right: 20%;
+}
+.formRadio{
+  accent-color: #3A3F44;  
+  background-color: #ffffff;
+}
+
+.hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.signin-link p{
+  color: #eee;
+  font-size: medium;
+  display: inline;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.signin-link p:hover{
+  color: #0023FF;
+  font-size: medium;
+  display: inline;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.signin-link{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    margin-bottom: 30px;
+}
+
+.signup-link p{
+    color: #eee;
+    font-size: medium;
+    display: inline;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.signup-link p:hover{
+    color: #0023FF;
+    font-size: medium;
+    display: inline;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.signup-link{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+.hiddensignin{
+  display: none !important;
+}
+
+.hiddenSignup{
+  display: none !important;
+}
+

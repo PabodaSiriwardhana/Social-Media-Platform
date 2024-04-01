@@ -1,0 +1,82 @@
+.post-cre-outer{
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+}
+
+.card{
+    width:100% ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none !important;
+    box-shadow: 1px 0px 7px 0px rgba(0,0,0,0.19);
+    -webkit-box-shadow: 1px 0px 7px 0px rgba(0,0,0,0.19);
+    -moz-box-shadow: 1px 0px 7px 0px rgba(0,0,0,0.19);
+}
+
+.card-body{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.postTxtContainer, .form-floating{
+    width:100% ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.postImgContainer{
+    
+    width:100% ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.btn-lg{
+    padding: 9px 25px !important;
+    font-size: medium !important;
+    margin: -8px 0 0 !important;
+    color: white !important;
+    
+}
+
+#upImg{
+    width: 350px;
+}
+
+#upImgLbl{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bi-upload{
+    font-size: 20px !important;
+    margin-left: 6px;
+}
+.bi-trash3{
+    font-size: 16px !important;
+    margin-left: 6px;
+}
+
+form{
+    width:100% ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#postMsgBox{
+    width:100% ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
