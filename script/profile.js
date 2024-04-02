@@ -1,6 +1,26 @@
 $(document).ready(function(){
 
-    var profileId = 3;
+    // Get the value of a specific cookie by its name
+    function getCookie(cookieName) {
+        const name = cookieName + "=";
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookieArray = decodedCookie.split(';');
+        for(let i = 0; i < cookieArray.length; i++) {
+            let cookie = cookieArray[i];
+            while (cookie.charAt(0) === ' ') {
+                cookie = cookie.substring(1);
+            }
+            if (cookie.indexOf(name) === 0) {
+                return cookie.substring(name.length, cookie.length);
+            }
+        }
+        return "";
+    };
+
+    // Usage example
+    const profileId = getCookie('pabz-profileId');
+    console.log(profileId);
+
 
     $.ajax({
         url: "profilePhoto-Get-Process.php", 
@@ -117,7 +137,7 @@ $(document).ready(function(){
     
     })
     
-    $("#resetFormBtn").click(function(){
+    $("#resetDetailsFormBtn").click(function(){
  
         $.ajax({
             url: "profileDetails-Get-Process.php", 
@@ -155,7 +175,7 @@ $(document).ready(function(){
     
     })
 
-    $("#updateDetailsBtn").click(function(event){
+    $("#updateProDetailsModalbtn").click(function(event){
         event.preventDefault();
 
         var newFName = $('#newFName').val();
@@ -303,6 +323,10 @@ $(document).ready(function(){
 
     // CHANGE PASSWORD
     $("#editPwBtn").click(function(){
+
+        $('#oldPw').val('');
+        $('#newPw').val('');
+        $('#cNewPw').val('');
         
         $("#pwEditCard").show();
         $("#proDetailsEditCard").hide();
@@ -314,7 +338,19 @@ $(document).ready(function(){
     
     })
 
+    $("#resetPWFormBtn").click(function(){
+
+        $('#oldPw').val('');
+        $('#newPw').val('');
+        $('#cNewPw').val('');
+    
+    })
+
     $("#cancelUpdatePwBtn").click(function(){
+
+        $('#oldPw').val('');
+        $('#newPw').val('');
+        $('#cNewPw').val('');
         
         $("#pwEditCard").hide();
         $("#proPWMsgboxContainer").hide();
@@ -325,7 +361,7 @@ $(document).ready(function(){
     
     })
 
-    $("#updatePwBtn").click(function(event){
+    $("#updateProPWModalbtn").click(function(event){
         event.preventDefault();
 
         var oldPassword = $('#oldPw').val();
@@ -567,8 +603,5 @@ $(document).ready(function(){
         }});
 
     });
-
-    
-    
 
 })

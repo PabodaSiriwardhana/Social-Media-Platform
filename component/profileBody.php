@@ -37,7 +37,7 @@
                             <h2 id="profileName"></h2>
                         </div>
                         <div class="pro-email-container mb-5">
-                            <h4 id="profileEmail"></h4>
+                            <h5 id="profileEmail"></h5>
                         </div>
                     </div>
 
@@ -153,14 +153,14 @@
                             <input type="email" class="form-control" id="newEmail" placeholder="Enter Your E-mail" required>
                         </div>
 
-                    </form> 
+                        <div class="updateBtn-container mb-3">
+                        <button id="updateDetailsBtn" type="submit" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#updateProDetailsModal">Update Details<i class="bi bi-check2-circle"></i></button>
+                        </div> 
 
-                    <div class="updateBtn-container mb-3">
-                        <button id="updateDetailsBtn" type="button" class="btn btn-primary btn-lg">Update Details<i class="bi bi-check2-circle"></i></button>
-                    </div> 
+                    </form>
                     
                     <div class="cancelResetUpdateBtn-container mb-3">
-                        <button id="resetFormBtn" type="button" class="btn btn-secondary">Reset<i class="bi bi-arrow-counterclockwise"></i></button>
+                        <button id="resetDetailsFormBtn" type="button" class="btn btn-secondary">Reset<i class="bi bi-arrow-counterclockwise"></i></button>
 
                         <button id="cancelUpdatedetailsBtn" type="button" class="btn btn-secondary">Cancel<i class="bi bi-x-circle"></i></button>
                     </div>
@@ -173,7 +173,7 @@
 
                 <div class="card-body mb-5">
 
-                    <form class="form" id="newDetailsForm">
+                    <form class="form" id="newPasswordForm">
 
                         <h3 class="mt-2 mb-4">Update Your Password</h3>
 
@@ -194,19 +194,23 @@
                             <input type="password" class="form-control" id="cNewPw" placeholder="Confirm Your New Password" required>
                         </div>
 
+                        <div class="updateBtn-container mb-3">
+                        <button id="updatePwBtn" type="submit" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#updateProPWModal">Update Password<i class="bi bi-check2-circle"></i></button>
+                        </div>
+
                     </form>
 
-                    <div class="updateBtn-container mb-3">
-                        <button id="updatePwBtn" type="button" class="btn btn-primary btn-lg">Update Password<i class="bi bi-check2-circle"></i></button>
-                    </div>
+                    <div class="cancelResetUpdateBtn-container mb-3">
+                        <button id="resetPWFormBtn" type="button" class="btn btn-secondary">Reset<i class="bi bi-arrow-counterclockwise"></i></button>
 
-                    <div class="cancelUpdateBtn-container mb-3">
                         <button id="cancelUpdatePwBtn" type="button" class="btn btn-secondary">Cancel<i class="bi bi-x-circle"></i></button>
                     </div>
 
                 </div>
 
             </div>
+
+
         </div>
 
         <div class="col-0 col-sm-0 col-md-2 col-lg-3"></div>

@@ -21,14 +21,15 @@ else{
         $user_data_row = $check_email_result->fetch_assoc();
 
         $userdb_password = $user_data_row['password'];
+        $userdb_profileId = $user_data_row['profileId'];
 
         $pw_verfication = password_verify($password, $userdb_password);
 
         if($pw_verfication == true){
 
-            $cookie_name = "pabz-user";
-            $cookie_value = $email;
-            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+            $cookie_name = "pabz-profileId";
+            $cookie_value = $userdb_profileId;
+            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 30days
 
             echo "goWall";
         }
