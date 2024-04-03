@@ -1,8 +1,78 @@
 $(document).ready(function(){
 
     $("#upImg").hide();
+    $("#postImgContainer").hide();
     $("#publishBtn").hide();
     $("#removePhotoBtn").hide();
+    $("#postMsgBox").hide();
+
+    function getCookie(cookieName) {
+        const name = cookieName + "=";
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookieArray = decodedCookie.split(';');
+        for(let i = 0; i < cookieArray.length; i++) {
+            let cookie = cookieArray[i];
+            while (cookie.charAt(0) === ' ') {
+                cookie = cookie.substring(1);
+            }
+            if (cookie.indexOf(name) === 0) {
+                return cookie.substring(name.length, cookie.length);
+            }
+        }
+        return "";
+    };
+
+    const profileId = getCookie('pabz-profileId');
+    console.log(profileId);
+
+    $.ajax({
+        url: "profilePhoto-Get-Process.php", 
+        type: "POST",
+        data: {
+            "profileId": profileId
+        },
+        
+        success: function(response){
+            console.log(response);
+
+            var response = JSON.parse(response);
+
+            imageUrl = response.proPicImgPath.replace(/\\\//g, '/');
+
+            console.log(imageUrl);
+
+            if (response.message="gotProPic") {
+                
+                $("#postCreationPropic").attr("src", imageUrl);
+                
+            }
+    }});
+
+    $.ajax({
+        url: "profileDetails-Get-Process.php", 
+        type: "POST",
+        data: {"profileId" : profileId},
+        
+        success: function(response){
+            console.log(response);
+
+            var response = JSON.parse(response);
+
+            message = response.message;
+            firstName = response.firstName;
+            surname = response.surname;
+            profilePic = response.profilePic;
+
+            if (message=="gotProDetails") {
+                
+                $("#postTxtArea").attr("placeholder","What's on your mind, "+firstName+"?");
+                $("#postTxtArealbl").html("What's on your mind, "+firstName+"?");
+                
+            }
+
+    }});
+
+    
 
     function readURL(input) {
 
@@ -13,6 +83,10 @@ $(document).ready(function(){
 
             reader.onload = function (e) {
                 $('#upImg').attr('src', e.target.result);
+
+                $('html, body').animate({
+                    scrollTop: $("#upImg").offset().top
+                });
             }
 
             reader.readAsDataURL(input.files[0]);
@@ -24,6 +98,7 @@ $(document).ready(function(){
         $(this).hide();
         $("#upImgLbl").hide();
         $("#upImg").show();
+        $("#postImgContainer").show();
         $("#publishBtn").show();
     });
 
@@ -45,11 +120,11 @@ $(document).ready(function(){
             $("#publishBtn").show();
         }
         else{
-            if ($('#postUplImg').val('')) {
-                $("#publishBtn").show();
+            if ($('#postUplImg').val('') && $(this).val().length==0) {
+                $("#publishBtn").hide();
             }
             else{
-                $("#publishBtn").hide();
+                $("#publishBtn").show();
             }
             
         }
@@ -68,10 +143,15 @@ $(document).ready(function(){
 
         var postTxt  = $('#postTxtArea').val();
         var file_data = $('#postUplImg').prop('files')[0];
+
+        fullName = firstName+" "+surname;
         
         var form_data = new FormData();
         form_data.append("file",file_data);
         form_data.append("postTxt",postTxt);
+        form_data.append("profileId",profileId);
+        form_data.append("fullName",fullName);
+        form_data.append("profilePic",profilePic);
 
         console.log(file_data);
 
@@ -88,22 +168,41 @@ $(document).ready(function(){
                 console.log(response);
                 
                 if(response=="postCreated"){
+                    $("#postMsgBox").show();
                     $("#postMsgBox").html('<div class="alert alert-success" role="alert">Your post published on the wall !!</div>');
+
+                    setTimeout(function() {
+                        $("#postMsgBox").fadeOut();
+                    }, 5000);
                 }
                 if(response=="empty"){
+                    $("#postMsgBox").show();
                     $("#postMsgBox").html('<div class="alert alert-warning" role="alert">Please add some content to your post before publishing!</div>');
+
+                    setTimeout(function() {
+                        $("#postMsgBox").fadeOut();
+                    },);
+                    
+                    setTimeout(function() {
+                        $("#postMsgBox").fadeIn();
+                    });
                 }
                 if(response=="error"){
+                    $("#postMsgBox").show();
                     $("#postMsgBox").html('<div class="alert alert-danger" role="alert">Something went wrong. Try again!</div>');
+
+                    setTimeout(function() {
+                        $("#postMsgBox").fadeOut();
+                    },);
+                    
+                    setTimeout(function() {
+                        $("#postMsgBox").fadeIn();
+                    });
                 }
 
                 
                 $('#postUplImg').val('');
                 $('#postTxtArea').val('');
-
-                setTimeout(function() {
-                    $("#postMsgBox").fadeOut();
-                }, 5000);
                 
         }});
 

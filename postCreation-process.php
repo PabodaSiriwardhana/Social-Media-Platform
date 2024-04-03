@@ -4,6 +4,9 @@
 
 
     $postTxt = trim(mysqli_real_escape_string($db_con, $_POST["postTxt"]));
+    $profileId = trim(mysqli_real_escape_string($db_con, $_POST["profileId"]));
+    $fullName = trim(mysqli_real_escape_string($db_con, $_POST["fullName"]));
+    $profilePic = trim(mysqli_real_escape_string($db_con, $_POST["profilePic"]));
 
     $target_directory = "postImg/";
 
@@ -29,13 +32,16 @@
     else{
 
         //insert data into table
-        $sql_create_post =$db_con-> prepare("INSERT INTO posts(text, image, dateTime)
-        VALUES (?, ?, ?)");
-        $sql_create_post->bind_param('sss', $postTxt, $postImg, $lkDateTime1);
+        $sql_create_post =$db_con-> prepare("INSERT INTO posts(text, image, dateTime, profileId, fullName, profilePic)
+        VALUES (?, ?, ?, ?, ?, ?)");
+        $sql_create_post->bind_param('ssssss', $postTxt, $postImg, $lkDateTime1, $profileId, $fullName, $profilePic);
 
         $postTxt = $postTxt;
         $postImg = $postImg; 
         $lkDateTime1 = $lkDateTime1;
+        $profileId = $profileId;
+        $fullName = $fullName;
+        $profilePic = $profilePic;
 
         if ($sql_create_post->execute() === TRUE) {
 

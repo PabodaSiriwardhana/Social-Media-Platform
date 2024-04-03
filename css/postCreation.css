@@ -16,7 +16,7 @@
 }
 
 .card-body{
-    width: 90%;
+    width:100% ;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,14 +24,13 @@
 }
 
 .postTxtContainer, .form-floating{
-    width:100% ;
     display: flex;
+    flex: 1;
     justify-content: center;
     align-items: center;
 }
+
 .postImgContainer{
-    
-    width:100% ;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -57,17 +56,17 @@
     align-items: center;
 }
 
-.bi-upload{
+.bi-image, .bi-clipboard-check{
     font-size: 20px !important;
     margin-left: 6px;
 }
+
 .bi-trash3{
     font-size: 16px !important;
     margin-left: 6px;
 }
 
 form{
-    width:100% ;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -79,4 +78,38 @@ form{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#postTxtArea{
+    border-radius: 50px;
+    min-height: 50px;
+}
+
+#postTxtArea:focus{
+    border-radius: 50px;
+    padding: 30px 10px 10px;
+    min-height: 70px;
+}
+
+.postPropicAndTxtContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.postPropicContainer{
+    width: 55px;
+}
+
+#postCreationPropic{
+    width: 55px;
+    height: 55px;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+
+hr{
+    width: 100%;
+    border: 2px solid #0D6EFD;
+    margin-top: -5px;
 }

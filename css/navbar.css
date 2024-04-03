@@ -50,10 +50,6 @@
     margin-right: 10px;
 }
 
-.icon-container-right button{
-    
-}
-
 .bi{
     color: white;
     font-size: 30px;
@@ -86,6 +82,7 @@
     border-bottom: 3px solid transparent;
     border-radius: 5%;
 }
+
 .icon-container-middle:hover{
     border-bottom: 3px solid white;
     cursor: pointer;

@@ -33,6 +33,17 @@ $(document).ready(function(){
         $("#header-middle").hide();
     }
 
+    if (window.location.href.indexOf('http://localhost/pabz/wall.php') !== -1) {
+        $('#navbarWallbtn').css({
+            'border-bottom': "3px solid white",
+            'background-color': 'rgba(116, 185, 255,0.5)'
+        });
+        $('#footerWallbtn').css({
+            'border-bottom': "3px solid white",
+            'background-color': 'rgba(116, 185, 255,0.5)'
+        });
+    }
+
 
     $.ajax({
         url: "profilePhoto-Get-Process.php", 

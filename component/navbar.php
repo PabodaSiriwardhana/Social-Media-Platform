@@ -52,7 +52,7 @@
 
                 <img alt="Profile Photo" class="d-inline-block align-text-top profileImg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true" id="profile" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Account">
 
-                <ul class="dropdown-menu  dropdown-menu-end">
+                <ul class="dropdown-menu dropdown-menu-end">
 
                   <li class="mb-2"><button id="myProfilebtn" type="button" class="btn btn-primary"><p>My Profile</p><i class="bi bi-person"></i></button></li>
 
@@ -76,7 +76,7 @@
 
         <div class="center-icons">
 
-            <div class="icon-container-middle nav-item"><i class="bi bi-house"></i></div>
+            <div id="footerWallbtn" class="icon-container-middle nav-item"><i class="bi bi-house"></i></div>
             <div class="icon-container-middle nav-item"><i class="bi bi-play-btn"></i></div>
             <div class="icon-container-middle nav-item"><i class="bi bi-shop"></i></div>
             <div class="icon-container-middle nav-item"><i class="bi bi-controller"></i></div>

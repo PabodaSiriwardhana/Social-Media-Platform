@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    // Get the value of a specific cookie by its name
+
     function getCookie(cookieName) {
         const name = cookieName + "=";
         const decodedCookie = decodeURIComponent(document.cookie);
@@ -17,7 +17,6 @@ $(document).ready(function(){
         return "";
     };
 
-    // Usage example
     const profileId = getCookie('pabz-profileId');
     console.log(profileId);
 

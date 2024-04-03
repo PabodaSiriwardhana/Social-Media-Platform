@@ -1,0 +1,19 @@
+.offcanvas-header{
+    color: white !important;
+    background-color: #0D6EFD !important;
+    height: 60px !important;
+}
+
+.offcanvas-header button{
+    color: white !important;
+    font-size: 25px !important;
+    background-color: transparent !important;
+    border: none !important;
+    display: flex;
+    align-items: center;
+}
+
+.offcanvasRightLabel{
+    font-size: 25px !important;
+    font-weight: 600 !important;
+}

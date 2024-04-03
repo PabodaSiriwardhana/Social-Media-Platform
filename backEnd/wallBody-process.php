@@ -1,14 +1,14 @@
 <?php
 
-    require_once "config/db-con.php";
+    require_once "../config/db-con.php";
 
-    $profileId = trim(mysqli_real_escape_string($db_con, $_POST["profileId"]));
+    $postId = trim(mysqli_real_escape_string($db_con, $_POST["postId"]));
 
      //get data from table
-     $sql_create_post =$db_con-> prepare("SELECT * FROM users WHERE profileId = ?");
-     $sql_create_post->bind_param('s', $profileId);
+     $sql_create_post =$db_con-> prepare("SELECT * FROM posts WHERE postId = ?");
+     $sql_create_post->bind_param('s', $postId);
  
-     $profileId = $profileId;
+     $postId = $postId;
  
      if ($sql_create_post->execute() === TRUE) {
 
@@ -18,21 +18,20 @@
 
             $row = $result->fetch_assoc();
             
-            $firstName = $row['firstName'];
-            $surname = $row['surname'];
-            $birthday = $row['birthday'];
-            $gender = $row['gender'];
-            $email = $row['email'];
+            $postId = $row['postId'];
+            $text = $row['text'];
+            $image = $row['image'];
+            $dateTime = $row['dateTime'];
+            $fullName = $row['fullName'];
             $profilePic = $row['profilePic'];
 
             $response = array(
-                "message" => "gotProDetails",
-                "firstName" => $firstName,
-                "surname" => $surname,
-                "birthday" => $birthday,
-                "gender" => $gender,
-                "email" => $email,
-                "proId" => $profileId,
+                "message" => "gotPostDetails",
+                "postId" => $postId,
+                "text" => $text,
+                "image" => $image,
+                "dateTime" => $dateTime,
+                "fullName" => $fullName,
                 "profilePic" => $profilePic
             );
 
@@ -43,7 +42,8 @@
         }
         else{
             $response = array(
-                "message" => "error"
+                "message" => "noRow",
+                "postId" => $postId
             );
 
             $json_response = json_encode($response);

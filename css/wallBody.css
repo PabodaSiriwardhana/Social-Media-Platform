@@ -1,3 +1,11 @@
+#wallbodyPosts{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .wall-body{
     width: 100%;
     display: flex;
@@ -16,9 +24,115 @@
 }
 
 .card-body{
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.post-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.postPropicContainer{
+    width: 70px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.publisherPropic{
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+}
+
+.postdetailsContainer{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.post-body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.postText{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.postImagecontainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropdown-toggle::after { 
+    content: none; 
+    }
+
+.postsettingsContainer{
+    width: 30px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.postsettingsContainer ul{
+    width: 100px !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+button.dropdown-toggle{
+    background: none;
+    border: none;
+    width: 10px !important;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+
+.postsettingsContainer ul button{
+    width: 100% !important;
+    height: 20px !important;
+    margin-top: -20px !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 35px !important;
+
+}
+
+.bi-three-dots{
+    color: black;
+}
+
+.publisherName{
+    color: #2c3e50;
+    font-weight: 500;
+    font-size: large;
+}
+
+.publishedDatetime{
+    color: #2c3e50;
+}
+
+.postText{
+    color: #192a56;
+    font-weight: 500;
+    font-size: large;
 }
