@@ -17,23 +17,45 @@ if (isset($_FILES["file"])) {
     move_uploaded_file($_FILES["file"]["tmp_name"],$proPicImgPath);
 
     //update data into table
-    $sql_create_post =$db_con-> prepare("UPDATE users SET profilePic = ? WHERE profileId = ?");
-    $sql_create_post->bind_param('ss', $proPic, $profileId);
+    $sql_update_propic =$db_con-> prepare("UPDATE users SET profilePic = ? WHERE profileId = ?");
+    $sql_update_propic->bind_param('ss', $proPic, $profileId);
 
     $proPic = $proPic;
     $profileId = $profileId;
 
-    if ($sql_create_post->execute() === TRUE) {
+    if ($sql_update_propic->execute() === TRUE) {
 
-        $response = array(
-            "message" => "proPicUpdated",
-            "proPicImgPath" => $proPicImgPath,
-            "proId" => $profileId
-        );
-        
-        $json_response = json_encode($response);
-        
-        echo $json_response;
+        //update data into table
+        $sql_update_propic_in_posts =$db_con-> prepare("UPDATE posts SET profilePic = ? WHERE profileId = ?");
+        $sql_update_propic_in_posts->bind_param('ss', $proPic, $profileId);
+
+        $proPic = $proPic;
+        $profileId = $profileId;
+
+        if ($sql_update_propic_in_posts->execute() === TRUE) {
+
+            $response = array(
+                "message" => "proPicUpdated",
+                "proPicImgPath" => $proPicImgPath,
+                "proId" => $profileId
+            );
+            
+            $json_response = json_encode($response);
+            
+            echo $json_response;
+        }
+        else {
+
+            $response = array(
+                "message" => "error",
+                "proId" => $profileId
+            );
+            
+            $json_response = json_encode($response);
+            
+            echo $json_response;
+        }
+
 
     } else {
 

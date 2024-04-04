@@ -2,9 +2,7 @@
 
   if (isset($_COOKIE['pabz-profileId'])) {
 
-    $cookieProfileId = $_COOKIE['pabz-profileId'];
-    
-    ?>
+?>
 
         <!doctype html>
         <html lang="en">
@@ -119,7 +117,8 @@
             </body>
         </html>
 
-        <?php
+<?php
+
   }
   else {
     header("Location: http://localhost/pabz/home.php");

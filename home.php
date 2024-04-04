@@ -1,3 +1,15 @@
+<?php
+
+  if (isset($_COOKIE['pabz-profileId'])) {
+
+    header("Location: http://localhost/pabz/wall.php");
+  
+  }
+  else{
+    
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -152,3 +164,9 @@
 
   
 </html>
+
+<?php
+
+  }
+
+?>

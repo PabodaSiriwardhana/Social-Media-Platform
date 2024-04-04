@@ -244,24 +244,43 @@ $(document).ready(function(){
                                 $("#profileSname").html(surname);
                                 $("#profileBday").html(birthday);
                                 $("#profileGender").html(gender);
+
+                                $('html, body').animate({
+                                    scrollTop: $("#proDetailsCard").offset().top
+                                });
+                                
+                                $("#proDetailsEditCard").hide();
+                                $("#msgboxContainer").show();
+                                $("#proDetailsMsgboxContainer").hide();
+            
+                                $("#msgboxContainer").html('<div class="alert alert-success" role="alert">Profile Details Updated!</div>');
+            
+                                setTimeout(function() {
+                                    $("#msgboxContainer").fadeOut();
+                                }, 5000);
+                                
+                            }
+                            if (msg=="error") {
+                    
+                                $('html, body').animate({
+                                    scrollTop: $("#proDetailsEditCard").offset().top
+                                });
+            
+                                setTimeout(function() {
+                                    $("#proDetailsMsgboxContainer").fadeOut();
+                                },);
+                                
+                                setTimeout(function() {
+                                    $("#proDetailsMsgboxContainer").fadeIn();
+                                });
+            
+                                $("#proDetailsMsgboxContainer").html('<div class="alert alert-danger" role="alert">Somthing went wrong. Please try again!</div>');
                                 
                             }
                 
                     }});
 
-                    $('html, body').animate({
-                        scrollTop: $("#proDetailsCard").offset().top
-                    });
                     
-                    $("#proDetailsEditCard").hide();
-                    $("#msgboxContainer").show();
-                    $("#proDetailsMsgboxContainer").hide();
-
-                    $("#msgboxContainer").html('<div class="alert alert-success" role="alert">Profile Details Updated!</div>');
-
-                    setTimeout(function() {
-                        $("#msgboxContainer").fadeOut();
-                    }, 5000);
 
                     
                 }

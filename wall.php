@@ -1,10 +1,8 @@
 <?php
 
   if (isset($_COOKIE['pabz-profileId'])) {
-
-    $cookieProfileId = $_COOKIE['pabz-profileId'];
     
-    ?>
+?>
 
         <!doctype html>
         <html lang="en">

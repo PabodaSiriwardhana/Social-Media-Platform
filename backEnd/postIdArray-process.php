@@ -5,10 +5,7 @@
     $postId = trim(mysqli_real_escape_string($db_con, $_POST["postId"]));
 
      //get data from table
-     $sql_create_post =$db_con-> prepare("SELECT * FROM posts WHERE postId = ?");
-     $sql_create_post->bind_param('s', $postId);
- 
-     $postId = $postId;
+     $sql_create_post =$db_con-> prepare("SELECT postId FROM posts");
  
      if ($sql_create_post->execute() === TRUE) {
 
@@ -16,25 +13,13 @@
     
         if ($result->num_rows > 0) {
 
-            $row = $result->fetch_assoc();
-            
-            $postId = $row['postId'];
-            $text = $row['text'];
-            $image = $row['image'];
-            $dateTime = $row['dateTime'];
-            $fullName = $row['fullName'];
-            $profilePic = $row['profilePic'];
-            $profileId = $row['profileId'];
+            while($row = $result->fetch_assoc()) {
+                $ids[] = $row['postId'];
+            }
 
             $response = array(
-                "message" => "gotPostDetails",
-                "postId" => $postId,
-                "text" => $text,
-                "image" => $image,
-                "dateTime" => $dateTime,
-                "fullName" => $fullName,
-                "profilePic" => $profilePic,
-                "profileId" => $profileId
+                "message" => "gotArray",
+                "postIdArray" => $ids
             );
 
             $json_response = json_encode($response);
@@ -63,5 +48,6 @@
 
         echo $json_response;
      }
+
 
 ?>

@@ -135,7 +135,7 @@
                         </div>
                         <div class="mb-4 formSec">
                             <label for="newBday" class="form-label">Birthday</label>
-                            <input id="newBday" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" placeholder="Enter Your Birthday" name="newBday" required>
+                            <input id="newBday" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" placeholder="Enter Your Birthday"  required>
                         </div>
                         <div class="mb-2 radiobtns">
                             <div class="radio maleRadio">
@@ -151,13 +151,13 @@
                         <div class="mb-5 formSec">
                             <label for="newEmail" class="form-label">Email</label>
                             <input type="email" class="form-control" id="newEmail" placeholder="Enter Your E-mail" required>
-                        </div>
-
-                        <div class="updateBtn-container mb-3">
-                        <button id="updateDetailsBtn" type="submit" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#updateProDetailsModal">Update Details<i class="bi bi-check2-circle"></i></button>
                         </div> 
 
                     </form>
+
+                    <div class="updateBtn-container mb-3">
+                        <button id="updateDetailsBtn" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#updateProDetailsModal">Update Details<i class="bi bi-check2-circle"></i></button>
+                    </div>
                     
                     <div class="cancelResetUpdateBtn-container mb-3">
                         <button id="resetDetailsFormBtn" type="button" class="btn btn-secondary">Reset<i class="bi bi-arrow-counterclockwise"></i></button>
@@ -194,11 +194,13 @@
                             <input type="password" class="form-control" id="cNewPw" placeholder="Confirm Your New Password" required>
                         </div>
 
-                        <div class="updateBtn-container mb-3">
-                        <button id="updatePwBtn" type="submit" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#updateProPWModal">Update Password<i class="bi bi-check2-circle"></i></button>
-                        </div>
+                        
 
                     </form>
+
+                    <div class="updateBtn-container mb-3">
+                        <button id="updatePwBtn" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#updateProPWModal">Update Password<i class="bi bi-check2-circle"></i></button>
+                    </div>
 
                     <div class="cancelResetUpdateBtn-container mb-3">
                         <button id="resetPWFormBtn" type="button" class="btn btn-secondary">Reset<i class="bi bi-arrow-counterclockwise"></i></button>

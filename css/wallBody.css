@@ -106,19 +106,22 @@ button.dropdown-toggle{
 }
 
 
-.postsettingsContainer ul button{
+.postsettingsContainer ul li button{
     width: 100% !important;
-    height: 20px !important;
     margin-top: -20px !important;
+    height: 40px !important;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding-bottom: 35px !important;
-
 }
 
 .bi-three-dots{
     color: black;
+}
+
+.bi-pencil, .bi-trash3{
+    color: white;
+    font-size: 20px;
 }
 
 .publisherName{
@@ -135,4 +138,24 @@ button.dropdown-toggle{
     color: #192a56;
     font-weight: 500;
     font-size: large;
+}
+
+.goUpBox{
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    position: fixed;
+    z-index: 1;
+    bottom: 20px;
+    right: 10px;
+    background-color: #0D6EFD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bi-arrow-up{
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
 }

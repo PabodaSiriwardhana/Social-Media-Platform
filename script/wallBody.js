@@ -1,145 +1,257 @@
 $(document).ready(function(){
 
+    $("#goUpBtn").hide();
+
+    if($(window).width()>768){
+        $("#goUpBtn").show();
+    }
+    else{
+        $("#goUpBtn").hide();
+    }
+
+    function getCookie(cookieName) {
+        const name = cookieName + "=";
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookieArray = decodedCookie.split(';');
+        for(let i = 0; i < cookieArray.length; i++) {
+            let cookie = cookieArray[i];
+            while (cookie.charAt(0) === ' ') {
+                cookie = cookie.substring(1);
+            }
+            if (cookie.indexOf(name) === 0) {
+                return cookie.substring(name.length, cookie.length);
+            }
+        }
+        return "";
+    };
+
+    const loggedProfileId = getCookie('pabz-profileId');
 
     var postId =1;
-    // var wallBody= "";
 
-    // looping(postId);
+    makeIdArray()
 
-    // function looping (postId){
+    function makeIdArray(){
 
-    //     $.ajax({
+        $.ajax({
 
-    //         url: "backEnd/wallBody-Process.php", 
-    //         type: "POST",
-    //         data: {"postId" : postId},
+            url: "backEnd/postIdArray-process.php", 
+            type: "POST",
+            data: {"postId" : postId},
 
 
-    //         success: function(response){
-    //             console.log(response);
+            success: function(response){
+                console.log(response);
 
-    //             var response = JSON.parse(response);
+                var response = JSON.parse(response);
 
-    //             msg = response.message;
-    //             postId = response.postId;
+                msg = response.message;
+                postIdArray = response.postIdArray;
 
-    //             if(msg=="gotPostDetails") {
-    //                 looping(++postId);
-    //             }
-    //             if (msg=="noRow") {
-    //                 lastPostId = postId;
-    //                 console.log("lastPostId"+lastPostId);
-    //                 foring(lastPostId);
-    //             }
+                console.log(postIdArray);
+                loadPosts(postIdArray);
+        }});
 
-    //     }});
+    }
 
-    // }
 
-    // function foring(lastPostId) {
+    var wallBody= "";
 
-    //     for (let postId = 1; postId < lastPostId; postId++) {
+    findLastPostId(postId);
+
+    function findLastPostId (postId){
+
+        $.ajax({
+
+            url: "backEnd/wallBody-Process.php", 
+            type: "POST",
+            data: {"postId" : postId},
+
+
+            success: function(response){
+                console.log(response);
+
+                var response = JSON.parse(response);
+
+                msg = response.message;
+                postId = response.postId;
+
+                if(msg=="gotPostDetails") {
+                    findLastPostId(++postId);
+                }
+                if (msg=="noRow") {
+                    lastPostId = postId;
+                    console.log("lastPostId "+lastPostId);
+                    // loadPosts(lastPostId);
+                }
+
+        }});
+
+    }
+
+    function loadPosts(postIdArray) {
+
+        $.each(postIdArray, function(index, postId) {
                         
-    //         $.ajax({
-    //             url: "backEnd/wallBody-Process.php", 
-    //             type: "POST",
-    //             data: {"postId" : postId},
+            $.ajax({
+                url: "backEnd/wallBody-Process.php", 
+                type: "POST",
+                data: {"postId" : postId},
                 
-    //             success: function(response){
-    //                 console.log(response);
+                success: function(response){
+                    console.log(response);
         
-    //                 var response = JSON.parse(response);
+                    var response = JSON.parse(response);
         
-    //                 msg = response.message;
-    //                 postId = response.postId;
-    //                 if (response.text != null) {
-    //                     posttxt = `<div class="postText mt-4">${response.text}</div>`;
-    //                 }
-    //                 else{
-    //                     posttxt = "";
-    //                 }
-    //                 if (response.image != null) {
-    //                     postimg =`<div class="postImagecontainer">
-    //                             <img src="postImg/${response.image}" class="postImage mt-4">
-    //                         </div>`;
-    //                 }
-    //                 else{
-    //                     postimg="";
-    //                 }
-    //                 postdatetime = response.dateTime;
-    //                 publisherfullName = response.fullName;
-    //                 publisherpropic = response.profilePic;
-        
-    //                 wallBody +=
-    //                 `<div class="card mb-5">
+                    msg = response.message;
+                    postId = response.postId;
+                    if (response.text != null) {
+                        posttxt = `<div class="postText  mt-4 col-12 col-sm-12 col-md-12 col-lg-10">${response.text}</div>`;
+                    }
+                    else{
+                        posttxt = "";
+                    }
+                    if (response.image != null) {
+                        postimg =`<div class="postImagecontainer">
+                                <img src="postImg/${response.image}" class="postImage mt-4 col-12 col-sm-12 col-md-12 col-lg-10">
+                            </div>`;
+                    }
+                    else{
+                        postimg="";
+                    }
+                    postdatetime = response.dateTime;
+                    publisherfullName = response.fullName;
+                    publisherpropic = response.profilePic;
+                    profileId = response.profileId;
 
-    //                     <div class="card-body post-container">
-                  
-    //                       <div class="post-header">
-    //                           <div class="postPropicContainer">
-    //                               <img src="profilePhotoImg/${publisherpropic}" class="publisherPropic"  alt="Profile Photo">
-    //                           </div>
-                  
-    //                           <div class="postdetailsContainer">
-    //                               <div class="publisherName">${publisherfullName}</div>
-    //                               <div class="publishedDatetime">${postdatetime}</div>
-    //                           </div>
-    //                       </div>
-                  
-    //                       <div class="post-body">
-    //                         ${posttxt}
-    //                         ${postimg}
-                              
-    //                       </div>
-                  
-    //                     </div>
+                    $.ajax({
+                        url: "profilePhoto-Get-Process.php", 
+                        type: "POST",
+                        data: {
+                            "profileId": profileId
+                        },
                         
-    //                   </div>`
+                        success: function(response){
+                            console.log(response);
+                
+                            var response = JSON.parse(response);
+                
+                            imageUrl = response.proPicImgPath.replace(/\\\//g, '/');
+                
+                            console.log(imageUrl);
+                
+                            if (response.message="gotProPic") {
+                                
+                                $("#postCreationPropic").attr("src", imageUrl);
+                                
+                            }
+                    }});
 
-    //                   $("#wallbodyPosts").html(wallBody);
-    //                   console.log(wallBody);
+
+                    if (loggedProfileId==profileId) {
+                        postSettingsBtn = `<div class="postsettingsContainer btn-group">
+                        <button class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true"><i class="bi bi-three-dots"></i></button>
+
+                        <ul class="dropdown-menu dropdown-menu-end">
+                        <li><button type="button" class="btn btn-secondary mb-4">Edit Text<i class="bi bi-pencil"></i></button></li>
+
+                        <li><button type="button" class="btn btn-secondary" >Delete Post<i class="bi bi-trash3"></i></button></li>
+                        </ul>
+                    </div>`;
+                    }
+                    else{
+                        postSettingsBtn="";
+                    }
         
-    //         }});
+                    wallBody +=
+                    `<div class="card mb-5">
+
+                        <div class="card-body post-container">
+                  
+                          <div class="post-header col-12 col-sm-12 col-md-12 col-lg-10">
+                              <div class="postPropicContainer">
+                                  <img src="profilePhotoImg/${publisherpropic}" class="publisherPropic"  alt="Profile Photo">
+                              </div>
+                  
+                              <div class="postdetailsContainer">
+                                    <div class="publisherName">${publisherfullName}</div>
+                                    <div class="publishedDatetime">${postdatetime}</div>
+                                </div>
+
+                                ${postSettingsBtn}
+                          </div>
+                  
+                          <div class="post-body">
+                            ${posttxt}
+                            ${postimg}    
+                          </div>
+                  
+                        </div>
+                        
+                    </div>`
+
+                      $("#wallbodyPosts").html(wallBody);
+                      console.log(wallBody);
+        
+            }});
             
-    //     }
+        });
 
+  
+    };
+
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 100) { 
+            $("#goUpBtn").fadeIn();
+        } else {
+            $("#goUpBtn").fadeOut();
+        }
+    });
+
+  
+    $("#goUpBtn").click(function() {
+        $("html, body").animate({ scrollTop: 0 });
+    });
+
+
+    $(window).resize(function() {
+
+        if($(window).width()>768){
+            $("#goUpBtn").show();
+        }
+        else{
+            $("#goUpBtn").hide();
+        }
+      });
+
+    // $.ajax({
+    //     url: "backEnd/wallBody-Process.php", 
+    //     type: "POST",
+    //     data: {"postId" : postId},
         
-        
-    //     $("#wallbodyPosts").show();
+    //     success: function(response){
+    //         console.log(response);
 
+    //         var response = JSON.parse(response);
 
-        
-    // }
+    //         msg = response.message;
+    //         postId = response.postId;
+    //         posttxt = response.text;
+    //         postimg = response.image;
+    //         postdatetime = response.dateTime;
+    //         publisherfullName = response.fullName;
+    //         publisherpropic = response.profilePic;
 
-
-    $.ajax({
-        url: "backEnd/wallBody-Process.php", 
-        type: "POST",
-        data: {"postId" : postId},
-        
-        success: function(response){
-            console.log(response);
-
-            var response = JSON.parse(response);
-
-            msg = response.message;
-            postId = response.postId;
-            posttxt = response.text;
-            postimg = response.image;
-            postdatetime = response.dateTime;
-            publisherfullName = response.fullName;
-            publisherpropic = response.profilePic;
-
-            if (msg=="gotPostDetails") {
+    //         if (msg=="gotPostDetails") {
                 
-                $(".publisherPropic").attr("src", "profilePhotoImg/"+publisherpropic);
-                $(".postImage").attr("src", "postImg/"+postimg);
-                $(".publisherName").html(publisherfullName);
-                $(".publishedDatetime").html(postdatetime);
-                $(".postText").html(posttxt);
+    //             $(".publisherPropic").attr("src", "profilePhotoImg/"+publisherpropic);
+    //             $(".postImage").attr("src", "postImg/"+postimg);
+    //             $(".publisherName").html(publisherfullName);
+    //             $(".publishedDatetime").html(postdatetime);
+    //             $(".postText").html(posttxt);
                 
-            }
+    //         }
 
-    }});
+    // }});
 
 });
