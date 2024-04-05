@@ -14,22 +14,18 @@
 
   <div class="col-12 col-sm-12 col-md-10 col-lg-6 wall">
 
-    <div id="wallbodyPosts"></div>
-
-  
-
-    <div class="card">
+    <div class="card mb-5">
 
       <div class="card-body post-container ">
 
         <div class="post-header col-12 col-sm-12 col-md-12 col-lg-10">
             <div class="postPropicContainer">
-                <img class="publisherPropic"  alt="Profile Photo">
+                <img class="publisherPropic" src="img/avatar2.png"  alt="Profile Photo">
             </div>
 
             <div class="postdetailsContainer">
-                <div class="publisherName"></div>
-                <div class="publishedDatetime"></div>
+                <div class="publisherName">xyz</div>
+                <div class="publishedDatetime">1111</div>
             </div>
 
             <div class="postsettingsContainer btn-group">
@@ -46,29 +42,80 @@
 
         </div>
 
-        <div class="post-body ">
-            <div class="postText mt-4 col-12 col-sm-12 col-md-12 col-lg-10"></div>
+        
+
+        <div class="post-body col-12 col-sm-12 col-md-12 col-lg-10 mb-4">
+            <div class="postText mt-4">head</div>
             <div class="postImagecontainer">
-              <img class="postImage mt-4 col-12 col-sm-12 col-md-12 col-lg-10">
+              <img class="postImage mt-4" src="img/avatar2.png">
             </div>
+
+        </div>
+
+        <hr class=" col-12 col-sm-12 col-md-12 col-lg-10">
+
+        <div class="belowPost col-12 col-sm-12 col-md-12 col-lg-10">
+
+            <div class="likeCountContainer">
+              <button id="postLikeBtn" class="likeBtn btn btn-outline-primary">
+                <h5>Like</h5>
+                <div class=""><i class="bi bi-hand-thumbs-up"></i></div>
+              </button>
+            </div>
+
+            <div class="likeCountContainer">
+              <div class="likeIco"><i class="bi bi-hand-thumbs-up-fill"></i></div>
+              <h5>234</h5>
+            </div>
+
+            <div class="likeCountContainer">
+              <button class="commentBtn btn btn-outline-primary"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseComments" aria-expanded="false" aria-controls="collapseComments">
+                <h5>Comment</h5>
+                <div class=""><i class="bi bi-chat-right"></i></div>
+              </button>
+            </div>
+            
+            
+        </div>
+
+        <div class="collapse mt-3 col-12 col-sm-12 col-md-12 col-lg-10 Comments" id="collapseComments">
+
+          <div class="card card-body">
+
+            <div class="writeComment mb-3">
+              <img class="writeCommentPropic" src="img/avatar2.png" alt="Profile Photo">
+              <input placeholder="Write a comment..." type="text"><button class="commentSubmitBtn btn btn-primary"><i class="bi bi-send"></i></button>
+            </div>
+
+            <div class="oldComment mb-3">
+              <img class="oldCommentPropic" src="img/avatar2.png" alt="Profile Photo">
+              <p>HEllO Hi How are you..</p>
+            </div>
+            
+          </div>
         </div>
 
       </div>
+
+
+      
       
     </div>
 
-  </div>
-  <div class="card mb-5">
-
-    <div class="card-body post-container ">
 
 
 
-    </div>
+
+
+
+
+
+    <div id="wallbodyPosts"></div>
 
     <div id="goUpBtn" class="goUpBox"  data-bs-toggle="tooltip" data-bs-placement="top" title="Go To Top"><i class="bi bi-arrow-up"></i></div>
-      
+
   </div>
+  
 
   <div class="col-0 col-sm-0 col-md-1 col-lg-3"></div>
 

@@ -2,10 +2,7 @@ $(document).ready(function(){
 
     $("#goUpBtn").hide();
 
-    if($(window).width()>768){
-        $("#goUpBtn").show();
-    }
-    else{
+    if($(window).width()<769){
         $("#goUpBtn").hide();
     }
 
@@ -253,5 +250,32 @@ $(document).ready(function(){
     //         }
 
     // }});
+
+
+    $("#postLikeBtn").click(function(){
+
+        $("#postLikeBtn").html(
+            `<h5>Liked</h5>
+                <div class=""><i class="bi bi-hand-thumbs-up-fill bi-likedIco"></i></div>`
+        );
+        $("#postLikeBtn").removeClass("btn-outline-primary");
+        $("#postLikeBtn").addClass("btn-primary");
+
+        $("#postLikeBtn").addClass("likedPostBtn");
+
+    });
+
+    $(".likedPostBtn").click(function(){
+
+        $("#postLikeBtn").html(
+            `<h5><h5>Like</h5>
+            <div class=""><i class="bi bi-hand-thumbs-up"></i></div>`
+        );
+        $("#postLikeBtn").removeClass("btn-primary");
+        $("#postLikeBtn").addClass("btn-outline-primary");
+
+        $("#postLikeBtn").removeClass("likedPostBtn");
+
+    });
 
 });

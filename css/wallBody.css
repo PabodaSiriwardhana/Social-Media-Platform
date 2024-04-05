@@ -137,7 +137,7 @@ button.dropdown-toggle{
 .postText{
     color: #192a56;
     font-weight: 500;
-    font-size: large;
+    font-size: 25px;
 }
 
 .goUpBox{
@@ -158,4 +158,137 @@ button.dropdown-toggle{
     color: white;
     font-size: 30px;
     font-weight: 600;
+}
+
+.likeCountBar-container{
+    height: 50px;
+    z-index: 1;
+}
+
+.belowPost{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.likeCountContainer{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.belowPost .likeCountContainer h5{
+    margin-bottom: -2px;
+    margin-right: 5px;
+}
+
+.likeIco{
+    width: 30px;
+    border-radius: 100%;
+    background-color: #0D6EFD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.likeCountContainer h5{
+    margin-left: 5px;
+}
+
+.bi-hand-thumbs-up-fill, .bi-hand-thumbs-up{
+    color: white;
+    font-size: 20px !important;
+}
+
+.bi-likedIco{
+    color: white !important;
+    font-size: 20px !important;
+}
+
+hr{
+    width: 100%;
+    border: 2px solid #0D6EFD;
+    margin-top: -5px;
+}
+
+.likeBtn, .commentBtn{
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    border-radius: 5px;
+    width: 150px;
+    
+}
+
+.likeBtn i, .commentBtn i{
+    color: #0D6EFD;
+    font-size: 20px !important;
+}
+
+.likeBtn:hover i, .commentBtn:hover i{
+    color: white !important;
+}
+
+.writeComment{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.oldComment{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Comments div input{
+    width: 100%;
+    border-radius: 50px;
+    padding: 8px 10px;
+    border: #0D6EFD 1px solid !important;
+}
+
+.Comments div input:focus{
+    outline: #0D6EFD 1px solid !important;
+}
+
+.writeCommentPropic, .oldCommentPropic{
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+
+.Comments div input{
+    width: 100%;
+    flex: 1;
+    border-radius: 50px 0 0 50px;
+    padding: 8px 10px;
+    border: #0D6EFD 1px solid !important;
+}
+
+.Comments div input:focus{
+    outline: #0D6EFD 1px solid !important;
+}
+
+.oldComment p{
+    flex: 1;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: -1px;
+}
+
+.commentSubmitBtn{
+    width: 55px;
+    height: 42px;
+    border-radius: 0 50px 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.bi-send{
+    font-size: 20px;
 }
