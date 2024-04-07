@@ -44,8 +44,7 @@
         }
         else{
             $response = array(
-                "message" => "noRow",
-                "postId" => $postId
+                "message" => "noRow"
             );
 
             $json_response = json_encode($response);

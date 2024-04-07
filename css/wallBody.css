@@ -6,6 +6,10 @@
     align-items: center;
 }
 
+#text{
+    opacity: 0.0;
+}
+
 .wall-body{
     width: 100%;
     display: flex;
@@ -29,6 +33,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.card-body::before{
+    display: none;
 }
 
 .post-header{
@@ -169,6 +176,9 @@ button.dropdown-toggle{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border: 1px solid #C2DBFE;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .likeCountContainer{
@@ -191,8 +201,12 @@ button.dropdown-toggle{
     justify-content: center;
 }
 
+.likeBtn h5, .commentBtn h5{
+    margin-right: 10px;
+}
+
 .likeCountContainer h5{
-    margin-left: 5px;
+    margin-left: 7px;
 }
 
 .bi-hand-thumbs-up-fill, .bi-hand-thumbs-up{
@@ -208,7 +222,6 @@ button.dropdown-toggle{
 hr{
     width: 100%;
     border: 2px solid #0D6EFD;
-    margin-top: -5px;
 }
 
 .likeBtn, .commentBtn{
@@ -218,6 +231,10 @@ hr{
     border-radius: 5px;
     width: 150px;
     
+}
+
+.likedPostBtn{
+
 }
 
 .likeBtn i, .commentBtn i{
@@ -240,7 +257,12 @@ hr{
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+}
+
+.oldCommentPropicContainer{
+    width: 45px;
+    height: 45px;
 }
 
 .Comments div input{
@@ -273,10 +295,21 @@ hr{
     outline: #0D6EFD 1px solid !important;
 }
 
-.oldComment p{
+.oldCommentdetailsContainer{
+    margin-left: 7px;
     flex: 1;
-    font-size: 16px;
-    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 2px 15px 4px;
+    border-radius: 20px;
+    background-color: rgba(116, 185, 255,0.2);
+}
+
+.oldCommenteContainer p{
+    font-size: 15px;
+    font-weight: 500;
     margin-bottom: -1px;
 }
 

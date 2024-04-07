@@ -12,9 +12,9 @@
 
   <div class="col-0 col-sm-0 col-md-1 col-lg-3"></div>
 
-  <div class="col-12 col-sm-12 col-md-10 col-lg-6 wall">
+  <div class="col-12 col-sm-12 col-md-10 col-lg-6">
 
-    <div class="card mb-5">
+    <!-- <div class="card mb-5">
 
       <div class="card-body post-container ">
 
@@ -56,8 +56,8 @@
 
         <div class="belowPost col-12 col-sm-12 col-md-12 col-lg-10">
 
-            <div class="likeCountContainer">
-              <button id="postLikeBtn" class="likeBtn btn btn-outline-primary">
+            <div id="postLikeBtnContainer">
+              <button id="postLikeBtn" class="postLikeBtn likeBtn btn btn-outline-primary">
                 <h5>Like</h5>
                 <div class=""><i class="bi bi-hand-thumbs-up"></i></div>
               </button>
@@ -68,7 +68,7 @@
               <h5>234</h5>
             </div>
 
-            <div class="likeCountContainer">
+            <div >
               <button class="commentBtn btn btn-outline-primary"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseComments" aria-expanded="false" aria-controls="collapseComments">
                 <h5>Comment</h5>
                 <div class=""><i class="bi bi-chat-right"></i></div>
@@ -88,25 +88,27 @@
             </div>
 
             <div class="oldComment mb-3">
-              <img class="oldCommentPropic" src="img/avatar2.png" alt="Profile Photo">
-              <p>HEllO Hi How are you..</p>
+              <div class="oldCommentPropicContainer">
+                <img class="oldCommentPropic" src="img/avatar2.png" alt="Profile Photo">
+              </div>
+
+              <div class="oldCommentdetailsContainer">
+                <div class="oldCommenterNameContainer">
+                  <h6>Paboda Siriwardana</h6>
+                </div>
+                <div class="oldCommenteContainer">
+                  <p>HEllO Hi How are you..</p>
+                </div>
+              </div>
+              
             </div>
             
           </div>
         </div>
 
       </div>
-
-
       
-      
-    </div>
-
-
-
-
-
-
+    </div> -->
 
 
 

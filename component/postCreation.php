@@ -11,7 +11,7 @@
 
       <div class="col-12 col-sm-12 col-md-10 col-lg-6">
 
-      <div class="card">
+      <div class="card mb-4">
           <div class="card-body">
 
           <form class="col-12 col-sm-12 col-md-12 col-lg-10" enctype = 'multipart/form-data'>
