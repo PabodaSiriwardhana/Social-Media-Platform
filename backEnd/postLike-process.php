@@ -104,6 +104,15 @@
     
                 echo $json_response;
             }
+            else{
+                $response = array(
+                    "message" => "noPosts"
+                );
+    
+                $json_response = json_encode($response);
+    
+                echo $json_response;
+            }
         
     
         } else {
