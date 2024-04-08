@@ -92,14 +92,20 @@
                 <img class="oldCommentPropic" src="img/avatar2.png" alt="Profile Photo">
               </div>
 
-              <div class="oldCommentdetailsContainer">
-                <div class="oldCommenterNameDateTimeContainer">
-                  <h6>Paboda Siriwardana</h6>
-                  <p class="commentDateTime">2022 22 22 22 32.</p>
+              <div class="oldCommentsContainer">
+                <div class="oldCommentdetailsContainer">
+                  <div class="oldCommenterNameDateTimeContainer">
+                    <h6>Paboda Siriwardana</h6>
+                    <p class="commentDateTime">2022 22 22 22 32.</p>
+                  </div>
+                  <div class="oldCommenteContainer">
+                    <p>HEllO Hi How are you..</p>
+                  </div>
                 </div>
-                <div class="oldCommenteContainer">
-                  <p>HEllO Hi How are you..</p>
-                </div>
+              </div>
+
+              <div class="commentDeleteBtnContainer">
+                <button><i class="bi bi-trash3"></i></button>
               </div>
               
             </div>
