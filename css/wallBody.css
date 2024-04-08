@@ -6,10 +6,6 @@
     align-items: center;
 }
 
-#text{
-    opacity: 0.0;
-}
-
 .wall-body{
     width: 100%;
     display: flex;
@@ -233,10 +229,6 @@ hr{
     
 }
 
-.likedPostBtn{
-
-}
-
 .likeBtn i, .commentBtn i{
     color: #0D6EFD;
     font-size: 20px !important;
@@ -273,7 +265,7 @@ hr{
 }
 
 .Comments div input:focus{
-    outline: #0D6EFD 1px solid !important;
+    outline: none !important;
 }
 
 .writeCommentPropic, .oldCommentPropic{
@@ -302,15 +294,21 @@ hr{
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 2px 15px 4px;
+    padding: 2px 15px;
     border-radius: 20px;
     background-color: rgba(116, 185, 255,0.2);
+}
+
+.oldCommenterNameDateTimeContainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .oldCommenteContainer p{
     font-size: 15px;
     font-weight: 500;
-    margin-bottom: -1px;
 }
 
 .commentSubmitBtn{

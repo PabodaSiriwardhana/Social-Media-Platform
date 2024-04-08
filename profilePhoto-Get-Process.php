@@ -22,6 +22,7 @@
             $row = $result->fetch_assoc();
             
             $proPicImgPath = $get_directory.$row['profilePic'];
+            $proPicImgName = $row['profilePic'];
             $proId = $row['profileId'];
 
             $response = array(

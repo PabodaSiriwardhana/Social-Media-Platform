@@ -29,7 +29,7 @@
         if ($sql_create_postlike->execute() === TRUE) {
         
             $response = array(
-                "message" => "postlike row inserted",
+                "message" => "postlikeRowInserted",
             );
 
             $json_response = json_encode($response);
@@ -59,7 +59,7 @@
         if ($sql_delete_postlike->execute() === TRUE) {
         
             $response = array(
-                "message" => "postlike row deleted",
+                "message" => "postlikeRowDeleted",
             );
 
             $json_response = json_encode($response);

@@ -14,7 +14,7 @@
 
   <div class="col-12 col-sm-12 col-md-10 col-lg-6">
 
-    <!-- <div class="card mb-5">
+    <div class="card mb-5">
 
       <div class="card-body post-container ">
 
@@ -93,8 +93,9 @@
               </div>
 
               <div class="oldCommentdetailsContainer">
-                <div class="oldCommenterNameContainer">
+                <div class="oldCommenterNameDateTimeContainer">
                   <h6>Paboda Siriwardana</h6>
+                  <p class="commentDateTime">2022 22 22 22 32.</p>
                 </div>
                 <div class="oldCommenteContainer">
                   <p>HEllO Hi How are you..</p>
@@ -108,7 +109,7 @@
 
       </div>
       
-    </div> -->
+    </div>
 
 
 
