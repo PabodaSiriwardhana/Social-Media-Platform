@@ -307,6 +307,10 @@ $(document).ready(function(){
   
     $("#goUpBtn").click(function() {
         $("html, body").animate({ scrollTop: 0 });
+
+        setTimeout(function() {
+            $("#goUpBtn").blur();
+        });
     });
 
 
@@ -329,6 +333,8 @@ $(document).ready(function(){
 
         var clicks = $(this).data('clicks');
 
+        
+
         if (clicks) {
             
             $(this).html(
@@ -337,6 +343,10 @@ $(document).ready(function(){
             );
             $(this).removeClass("btn-primary");
             $(this).addClass("btn-outline-primary");
+
+            setTimeout(function() {
+                $(".postLikeBtn").blur();
+            });
                 
             $.ajax({
     
@@ -390,6 +400,9 @@ $(document).ready(function(){
             $(this).removeClass("btn-outline-primary");
             $(this).addClass("btn-primary");
             
+            setTimeout(function() {
+                $(".postLikeBtn").blur();
+            });
 
             $.ajax({
 
@@ -447,6 +460,10 @@ $(document).ready(function(){
         );
         $(this).removeClass("btn-primary");
         $(this).addClass("btn-outline-primary");
+
+        setTimeout(function() {
+            button.blur();
+        });
             
         $.ajax({
 
@@ -503,6 +520,10 @@ $(document).ready(function(){
 
         postComment = $(commentPostIdValue).val();
 
+        setTimeout(function() {
+            $(".commentSubmitBtn").blur();
+        });
+
         $.ajax({
             url: "profileDetails-Get-Process.php", 
             type: "POST",
@@ -542,11 +563,12 @@ $(document).ready(function(){
                         msg = response.message;
                         postCommentsArray = response.postCommentsArray;
 
+                        oldCommentsContainer = "#oldCommentsContainer"+commentPostId;
+
                         if (msg == "gotArray") {
 
                             $(commentPostIdValue).val('');
                             
-                            oldCommentsContainer = "#oldCommentsContainer"+commentPostId;
                             $(oldCommentsContainer).html('');
                         
                             console.log(postCommentsArray);
@@ -555,6 +577,7 @@ $(document).ready(function(){
             
                                 commentIdValue = row["commentId"];
                                 commentProfileId = row["profileId"];
+                                commentPostId = row["postId"];
                                 comment = row["comment"];
                                 commentprofilePic = row["profilePic"];
                                 commenprofileName = row["profileName"];
@@ -562,9 +585,9 @@ $(document).ready(function(){
                                 commentdateTime = commentdateTime.slice(0, -3);
 
                                 if (loggedProfileId == commentProfileId) {
-                                    commentDeletebtn = `<div class="commentDeleteBtnContainer">
-                                                            <button name="${commentSectionPostId}" class="commentDeleteBtn"><i class="bi bi-trash3"></i></button>
-                                                        </div>`;
+                                    commentDeletebtn = `<div name="${commentPostId}" class="commentDeleteBtnContainer">
+                                        <button name="${commentIdValue}" class="commentDeleteBtn"><i class="bi bi-trash3"></i></button>
+                                    </div>`;
                                 }
                                 else{
                                     commentDeletebtn = "";
@@ -594,6 +617,11 @@ $(document).ready(function(){
                                 $(oldCommentsContainer).append(oldCommentsHTML);
                             });
                         }
+                        if (msg == "noComments") {
+
+                            $(oldCommentsContainer).html('');
+
+                        }
                     
                     }
         
@@ -609,9 +637,13 @@ $(document).ready(function(){
 
         var clicks = $(this).data('clicks');
 
-        if (clicks) {
+        oldCommentsContainer = "#oldCommentsContainer"+commentSectionPostId;
 
-            oldCommentsContainer = "#oldCommentsContainer"+commentSectionPostId;
+        setTimeout(function() {
+            $(".openCommentSection").blur();
+        });
+
+        if (clicks) {
 
             $(oldCommentsContainer).html('');
 
@@ -631,7 +663,6 @@ $(document).ready(function(){
                     postCommentsArray = response.postCommentsArray;
         
                     console.log(response);
-                    
         
                     if (msg == "gotArray") {
         
@@ -642,6 +673,7 @@ $(document).ready(function(){
         
                             commentIdValue = row["commentId"];
                             commentProfileId = row["profileId"];
+                            commentPostId = row["postId"];
                             comment = row["comment"];
                             commentprofilePic = row["profilePic"];
                             commenprofileName = row["profileName"];
@@ -649,9 +681,9 @@ $(document).ready(function(){
                             commentdateTime = commentdateTime.slice(0, -3);
 
                             if (loggedProfileId == commentProfileId) {
-                                commentDeletebtn = `<div class="commentDeleteBtnContainer">
-                                                        <button name="${commentSectionPostId}" class="commentDeleteBtn"><i class="bi bi-trash3"></i></button>
-                                                    </div>`;
+                                commentDeletebtn = `<div name="${commentPostId}" class="commentDeleteBtnContainer">
+                                    <button name="${commentIdValue}" class="commentDeleteBtn"><i class="bi bi-trash3"></i></button>
+                                </div>`;
                             }
                             else{
                                 commentDeletebtn = "";
@@ -678,11 +710,13 @@ $(document).ready(function(){
                             </div>`;
         
                             console.log(oldCommentsHTML);
-        
-                            oldCommentsContainer = "#oldCommentsContainer"+commentSectionPostId;
 
                             $(oldCommentsContainer).append(oldCommentsHTML);
                         });
+                    }
+                    if (msg == "noComments") {
+
+                        $(oldCommentsContainer).html('');
                     }
                 }
         
@@ -691,6 +725,98 @@ $(document).ready(function(){
         }
 
         $(this).data("clicks", !clicks);
+    
+    });
+
+
+    $(document.body).on("click",".commentDeleteBtn", function(event){
+
+        var postCommentId = $(this).attr('name');
+        var postId = $(this).parent('div.commentDeleteBtnContainer').attr('name');
+        console.log(" Parent = "+postId);
+
+        setTimeout(function() {
+            $(".commentDeleteBtn").blur();
+        });
+
+        $.ajax({
+            url: "backEnd/postComment-process.php", 
+            type: "POST",
+            async: false,
+            data:  {"postCommentId" : postCommentId,
+                    "postId" : postId
+                    },
+            
+            success: function(response){
+    
+                var response = JSON.parse(response);
+                msg = response.message;
+                postCommentsArray = response.postCommentsArray;
+    
+                console.log(response);
+
+                oldCommentsContainer = "#oldCommentsContainer"+postId;
+                
+    
+                if (msg == "gotArray") {
+    
+                    
+                    console.log(postCommentsArray);
+
+                    $(oldCommentsContainer).html('');
+    
+                    postCommentsArray.forEach(row => {
+    
+                        commentIdValue = row["commentId"];
+                        commentProfileId = row["profileId"];
+                        commentPostId = row["postId"];
+                        comment = row["comment"];
+                        commentprofilePic = row["profilePic"];
+                        commenprofileName = row["profileName"];
+                        commentdateTime = row["dateTime"];
+                        commentdateTime = commentdateTime.slice(0, -3);
+
+                        if (loggedProfileId == commentProfileId) {
+                            commentDeletebtn = `<div name="${commentPostId}" class="commentDeleteBtnContainer">
+                                <button name="${commentIdValue}" class="commentDeleteBtn"><i class="bi bi-trash3"></i></button>
+                            </div>`;
+                        }
+                        else{
+                            commentDeletebtn = "";
+                        }
+    
+                        var oldCommentsHTML=
+                        `<div class="oldComment mb-3">
+                            <div class="oldCommentPropicContainer">
+                                <img class="oldCommentPropic" src="profilePhotoImg/${commentprofilePic}" alt="Profile Photo">
+                            </div>
+    
+                            <div class="oldCommentdetailsContainer">
+                                <div class="oldCommenterNameDateTimeContainer">
+                                    <h6>${commenprofileName}</h6>
+                                    <p class="commentDateTime">${commentdateTime}</p>
+                                </div>
+                                <div class="oldCommentContainer">
+                                    <p name="${commentIdValue}">${comment}</p>
+                                    ${commentDeletebtn}
+                                </div>
+
+                            </div>
+                                        
+                        </div>`;
+    
+                        console.log(oldCommentsHTML);
+
+                        $(oldCommentsContainer).append(oldCommentsHTML);
+                    });
+                }
+                if (msg == "noComments") {
+
+                    $(oldCommentsContainer).html('');
+                }
+            }
+    
+        });
     
     });
 

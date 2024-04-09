@@ -20,6 +20,9 @@
     if (isset($_POST["postIdForGetComments"])){
         $postIdForGetComments = trim(mysqli_real_escape_string($db_con, $_POST["postIdForGetComments"]));
     }
+    if (isset($_POST["postCommentId"])){
+        $postCommentId = trim(mysqli_real_escape_string($db_con, $_POST["postCommentId"]));
+    }
     
 
     if (isset($postComment)) {
@@ -176,6 +179,98 @@
 
             echo $json_response;
         }
+    }
+
+    if (isset($postCommentId))  {
+
+        //delete data from table
+        $sql_delete_postComment =$db_con-> prepare("DELETE FROM postcomment WHERE commentId = ?");
+        $sql_delete_postComment->bind_param('s', $postCommentId);
+    
+        $postCommentId = $postCommentId;
+    
+        if ($sql_delete_postComment->execute() === TRUE) {
+        
+            //get data from table
+            $sql_get_postComment =$db_con-> prepare("SELECT * FROM postcomment WHERE postId = ?");
+            $sql_get_postComment->bind_param('s', $postId);
+        
+            $postId = $postId;
+        
+            if ($sql_get_postComment->execute() === TRUE) {
+            
+                $result = $sql_get_postComment->get_result();
+        
+                if ($result->num_rows > 0) {
+        
+                    while($row = $result->fetch_assoc()) {
+                        
+                        $commentId = $row["commentId"];
+                        $postId = $row["postId"];
+                        $profileId = $row["profileId"];
+                        $profilePic = $row["profilePic"];
+                        $profileName = $row["profileName"];
+                        $comment = $row["comment"];
+                        $dateTime = $row["dateTime"];
+                        
+                        
+                        $rowData = array(
+                            "commentId" => $commentId,
+                            "postId" => $postId,
+                            "profileId" => $profileId,
+                            "profilePic" => $profilePic,
+                            "profileName" => $profileName,
+                            "comment" => $comment,
+                            "dateTime" => $dateTime
+                        );
+
+                        
+                        $rows[] = $rowData;
+                    }
+        
+                    $response = array(
+                        "message" => "gotArray",
+                        "postCommentsArray" => $rows
+                    );
+        
+                    $json_response = json_encode($response);
+        
+                    echo $json_response;
+                }
+                else{
+                    $response = array(
+                        "message" => "noComments"
+                    );
+        
+                    $json_response = json_encode($response);
+        
+                    echo $json_response;
+                }
+            
+        
+            } else {
+        
+                $response = array(
+                    "message" => "error"
+                );
+
+                $json_response = json_encode($response);
+
+                echo $json_response;
+            }
+        
+    
+        } else {
+    
+            $response = array(
+                "message" => "error"
+            );
+
+            $json_response = json_encode($response);
+
+            echo $json_response;
+        }
+
     }
 
 
