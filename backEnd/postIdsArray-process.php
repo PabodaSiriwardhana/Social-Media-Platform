@@ -2,14 +2,12 @@
 
     require_once "../config/db-con.php";
 
-    $postId = trim(mysqli_real_escape_string($db_con, $_POST["postId"]));
-
      //get data from table
-     $sql_create_post =$db_con-> prepare("SELECT postId FROM posts");
+     $sql_get_post =$db_con-> prepare("SELECT postId FROM posts");
  
-     if ($sql_create_post->execute() === TRUE) {
+     if ($sql_get_post->execute() === TRUE) {
 
-        $result = $sql_create_post->get_result();
+        $result = $sql_get_post->get_result();
     
         if ($result->num_rows > 0) {
 
@@ -29,8 +27,7 @@
         }
         else{
             $response = array(
-                "message" => "noRow",
-                "postId" => $postId
+                "message" => "noPosts"
             );
 
             $json_response = json_encode($response);

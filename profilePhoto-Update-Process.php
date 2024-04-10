@@ -34,15 +34,38 @@ if (isset($_FILES["file"])) {
 
         if ($sql_update_propic_in_posts->execute() === TRUE) {
 
-            $response = array(
-                "message" => "proPicUpdated",
-                "proPicImgPath" => $proPicImgPath,
-                "proId" => $profileId
-            );
+            //update data in the table
+            $sql_update_postComment =$db_con-> prepare("UPDATE postcomment SET profilePic = ? WHERE profileId = ?");
+            $sql_update_postComment->bind_param('ss', $proPic, $profileId);
+        
+            $proPic = $proPic;
+            $profileId = $profileId;
+        
+            if ($sql_update_postComment->execute() === TRUE) {
+
+                $response = array(
+                    "message" => "proPicUpdated",
+                    "proPicImgPath" => $proPicImgPath,
+                    "proId" => $profileId
+                );
+                
+                $json_response = json_encode($response);
+                
+                echo $json_response;
+            }
+            else {
+
+                $response = array(
+                    "message" => "error",
+                    "proId" => $profileId
+                );
+                
+                $json_response = json_encode($response);
+                
+                echo $json_response;
+            }
+
             
-            $json_response = json_encode($response);
-            
-            echo $json_response;
         }
         else {
 

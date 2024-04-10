@@ -52,9 +52,6 @@
             $profileId = $profileId;
 
             if ($sql_update_user->execute() === TRUE) {
-
-                
-
                 //update data in the table
                 $sql_update_user_in_posts = $db_con-> prepare("UPDATE posts SET fullName = ? WHERE profileId = ?");
                 $sql_update_user_in_posts->bind_param('ss', $fullName, $profileId);
@@ -64,14 +61,37 @@
 
                 if ($sql_update_user_in_posts->execute() === TRUE) {
 
-                    $response = array(
-                        "message" => "userDetailsUpdated",
-                        "proId" => $profileId
-                    );
+                    //update data in the table
+                    $sql_update_postComment =$db_con-> prepare("UPDATE postcomment SET profileName = ? WHERE profileId = ?");
+                    $sql_update_postComment->bind_param('ss', $fullName, $profileId);
+                
+                    $fullName = $fullName;
+                    $profileId = $profileId;
+                
+                    if ($sql_update_postComment->execute() === TRUE) {
+
+                        $response = array(
+                            "message" => "userDetailsUpdated",
+                            "proId" => $profileId
+                        );
+                        
+                        $json_response = json_encode($response);
+                        
+                        echo $json_response;
+                    }
+                    else {
+
+                        $response = array(
+                            "message" => "error",
+                            "proId" => $profileId
+                        );
+                        
+                        $json_response = json_encode($response);
+                        
+                        echo $json_response;
+                    }
+
                     
-                    $json_response = json_encode($response);
-                    
-                    echo $json_response;
                 }
                 else {
 

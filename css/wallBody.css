@@ -188,13 +188,32 @@ button.dropdown-toggle{
     margin-right: 5px;
 }
 
-.likeIco{
+.likeIco, .commentIco{
     width: 30px;
+    height: 30px;
     border-radius: 100%;
     background-color: #0D6EFD;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.commentIco{
+    margin-left: 5px !important;
+}
+
+.commentIco i.bi-chat-right-fill{
+    color: white;
+    font-size: 15px !important;
+}
+
+.likeIco i.bi-hand-thumbs-up-fill{
+    color: white;
+    font-size: 18px !important;
+}
+
+.icoSeperator{
+    margin: 0 5px 0 5px;
 }
 
 .likeBtn h5, .commentBtn h5{
@@ -220,12 +239,20 @@ hr{
     border: 2px solid #0D6EFD;
 }
 
-.likeBtn, .commentBtn{
+.likeBtn{
     display: flex;
     align-items: baseline;
     justify-content: center;
     border-radius: 5px;
-    width: 150px;
+    width: 100px;
+}
+
+.commentBtn{
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    border-radius: 5px;
+    width: 130px;
     
 }
 

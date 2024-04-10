@@ -49,6 +49,7 @@
 
 #profilePic{
     width: 300px;
+    height: 300px;
     border-radius: 100%;
     margin-right: -5px;
     border: 2px solid #3867d6;

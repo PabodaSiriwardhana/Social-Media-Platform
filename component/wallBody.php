@@ -14,7 +14,7 @@
 
   <div class="col-12 col-sm-12 col-md-10 col-lg-6">
 
-    <div class="card mb-5">
+    <!-- <div class="card mb-5">
 
       <div class="card-body post-container ">
 
@@ -66,6 +66,9 @@
             <div class="likeCountContainer">
               <div class="likeIco"><i class="bi bi-hand-thumbs-up-fill"></i></div>
               <h5>234</h5>
+              <h2 class="icoSeperator">|</h2>
+              <div class="commentIco"><i class="bi bi-chat-right-fill"></i></div>
+              <h5>234</h5>
             </div>
 
             <div >
@@ -115,7 +118,7 @@
 
       </div>
       
-    </div>
+    </div> -->
 
 
 

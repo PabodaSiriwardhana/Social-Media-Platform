@@ -106,7 +106,7 @@
             }
             else{
                 $response = array(
-                    "message" => "noPosts"
+                    "message" => "noPostLikes"
                 );
     
                 $json_response = json_encode($response);

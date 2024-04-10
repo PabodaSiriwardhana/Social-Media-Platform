@@ -28,15 +28,15 @@ $(document).ready(function(){
 
     const loggedProfileId = getCookie('pabz-profileId');
 
-    makeIdArray(1);
+    makeIdArray();
 
-    function makeIdArray(postId){
+    function makeIdArray(){
 
         $.ajax({
 
             url: "backEnd/postIdsArray-process.php", 
             type: "POST",
-            data: {"postId" : postId},
+            async: false,
 
 
             success: function(response){
@@ -45,69 +45,57 @@ $(document).ready(function(){
                 var response = JSON.parse(response);
 
                 msg = response.message;
-                postIdArrayfromPosts = response.postIdArray;
 
-                console.log(postIdArrayfromPosts);
+                if (msg=="noPosts") {
+                    $("#wallbodyPosts").html('');
+                }
+                if (msg=="gotArray") {
+                    
+                    postIdArray = response.postIdArray;
+                    postIdArrayfromPosts = postIdArray.reverse();
 
-                $.ajax({
+                    console.log(postIdArrayfromPosts);
+
+                    $.ajax({
     
-                    url: "backEnd/postLike-process.php", 
-                    type: "POST",
-                    data: {"checkProfileId" : loggedProfileId},
-            
-            
-                    success: function(response){
-                        console.log(response);
-            
-                        var response = JSON.parse(response);
-            
-                        msg = response.message;
-                        postIdArrayfromPostLike = response.postIdArray;
-
-                        loadPosts(postIdArrayfromPosts, postIdArrayfromPostLike);
-                }});
-
+                        url: "backEnd/postLike-process.php", 
+                        type: "POST",
+                        async: false,
+                        data: {"checkProfileId" : loggedProfileId},
                 
-        }});
+                
+                        success: function(response){
+                            console.log(response);
+                
+                            var response = JSON.parse(response);
+                
+                            msg = response.message;
 
+                            if (msg=="noPostLikes") {
+                                
+                                postIdArrayfromPostLike = [];
+
+                                console.log(postIdArrayfromPostLike);
+        
+                                loadPosts(postIdArrayfromPosts, postIdArrayfromPostLike);
+                            }
+                            if (msg=="gotArray") {
+                                
+                                postIdArrayfromPostLike = response.postIdArray;
+    
+                                console.log(postIdArrayfromPostLike);
+        
+                                loadPosts(postIdArrayfromPosts, postIdArrayfromPostLike);
+                            }
+                        }
+                    });
+                }
+            }
+        });
     }
-
-
-    // findLastPostId(1);
-
-    // function findLastPostId (postId){
-
-    //     $.ajax({
-
-    //         url: "backEnd/wallBody-Process.php", 
-    //         type: "POST",
-    //         data: {"postId" : postId},
-
-
-    //         success: function(response){
-    //             console.log(response);
-
-    //             var response = JSON.parse(response);
-
-    //             msg = response.message;
-    //             postId = response.postId;
-
-    //             if(msg=="gotPostDetails") {
-    //                 findLastPostId(++postId);
-    //             }
-    //             if (msg=="noRow") {
-    //                 lastPostId = postId;
-    //                 console.log("lastPostId "+lastPostId);
-    //                 // loadPosts(lastPostId);
-    //             }
-
-    //     }});
-
-    // }
  
 
     function loadPosts(postIdArrayfromPosts, postIdArrayfromPostLike) {
-        console.log(postIdArrayfromPosts);
 
 
         postIdArrayfromPosts.forEach(postId => {
@@ -163,12 +151,10 @@ $(document).ready(function(){
 
                             if ($.inArray(postIdValue, postIdArrayfromPostLike) !== -1) {
                                 btnPart = `class="likedPostBtn likeBtn btn btn-primary">
-                                <h5>Liked</h5>
-                                <div class=""><i class="bi bi-hand-thumbs-up-fill bi-likedIco"></i></div>`
+                                <h6>Liked <i class="bi bi-hand-thumbs-up-fill bi-likedIco"></i></h6>`
                             } else {
                                 btnPart = `class="postLikeBtn likeBtn btn btn-outline-primary">
-                                <h5>Like</h5>
-                                <div class=""><i class="bi bi-hand-thumbs-up"></i></div>`
+                                <h6>Like <i class="bi bi-hand-thumbs-up"></i></h6>`
                             }
 
 
@@ -222,12 +208,13 @@ $(document).ready(function(){
                                     <div class="likeCountContainer">
                                     <div class="likeIco"><i class="bi bi-hand-thumbs-up-fill"></i></div>
                                     <h5 id="likeCountPost${postIdValue}">${likeCount}</h5>
+                                    <div class="commentIco"><i class="bi bi-chat-right-fill"></i></div>
+                                    <h5>23</h5>
                                     </div>
 
                                     <div >
                                     <button name="${postIdValue}" class="openCommentSection commentBtn btn btn-outline-primary"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseComments${postIdValue}" aria-expanded="false" aria-controls="collapseComments">
-                                        <h5>Comment</h5>
-                                        <div class=""><i class="bi bi-chat-right"></i></div>
+                                        <h6>Comment <i class="bi bi-chat-right"></i></h6>
                                     </button>
                                     </div>
                                     
@@ -338,8 +325,7 @@ $(document).ready(function(){
         if (clicks) {
             
             $(this).html(
-                `<h5><h5>Like</h5>
-                <div class=""><i class="bi bi-hand-thumbs-up"></i></div>`
+                `<h6>Like <i class="bi bi-hand-thumbs-up"></i></h6>`
             );
             $(this).removeClass("btn-primary");
             $(this).addClass("btn-outline-primary");
@@ -394,8 +380,7 @@ $(document).ready(function(){
         }
         else{
             $(this).html(
-                `<h5>Liked</h5>
-                    <div class=""><i class="bi bi-hand-thumbs-up-fill bi-likedIco"></i></div>`
+                `<h6>Liked <i class="bi bi-hand-thumbs-up-fill bi-likedIco"></i></h6>`
             );
             $(this).removeClass("btn-outline-primary");
             $(this).addClass("btn-primary");
@@ -455,8 +440,7 @@ $(document).ready(function(){
         var likedPostId = $(this).attr('name');
 
         $(this).html(
-            `<h5><h5>Like</h5>
-            <div class=""><i class="bi bi-hand-thumbs-up"></i></div>`
+            `<h6>Like <i class="bi bi-hand-thumbs-up"></i></h6>`
         );
         $(this).removeClass("btn-primary");
         $(this).addClass("btn-outline-primary");
