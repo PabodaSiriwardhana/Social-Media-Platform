@@ -8,11 +8,19 @@
 </head>
 <body>
 
+  <div id="loadingSpinner">
+    <div class="spinner-border text-primary" role="status">
+    </div>
+    <div>
+      <h2>Loading...</h2>
+    </div>
+  </div>
+
   <div class="wall-body">
 
-  <div class="col-0 col-sm-0 col-md-1 col-lg-3"></div>
+  <div class="col-0 col-sm-0 col-md-1 col-lg-2 col-xl-3"></div>
 
-  <div class="col-12 col-sm-12 col-md-10 col-lg-6">
+  <div class="mb-5 col-12 col-sm-12 col-md-10 col-lg-8 col-xl-6">
 
     <!-- <div class="card mb-5">
 
@@ -129,7 +137,7 @@
   </div>
   
 
-  <div class="col-0 col-sm-0 col-md-1 col-lg-3"></div>
+  <div class="col-0 col-sm-0 col-md-1 col-lg-2 col-xl-3"></div>
 
   </div>
 

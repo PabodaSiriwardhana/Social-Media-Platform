@@ -76,10 +76,13 @@
 
         <div class="center-icons">
 
-            <div id="footerWallbtn" class="icon-container-middle nav-item"><i class="bi bi-house"></i></div>
-            <div class="icon-container-middle nav-item"><i class="bi bi-play-btn"></i></div>
-            <div class="icon-container-middle nav-item"><i class="bi bi-shop"></i></div>
-            <div class="icon-container-middle nav-item"><i class="bi bi-controller"></i></div>
+          <div id="footerWallbtn" class="icon-container-middle nav-item">
+            <i class="bi bi-house"></i>
+          </div>
+
+          <div class="icon-container-middle nav-item"><i class="bi bi-play-btn"></i></div>
+          <div class="icon-container-middle nav-item"><i class="bi bi-shop"></i></div>
+          <div class="icon-container-middle nav-item"><i class="bi bi-controller"></i></div>
 
         </div>
 

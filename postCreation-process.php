@@ -27,7 +27,13 @@
 
     if (empty($postTxt) && empty($postImg)){
 
-        echo "empty";
+        $response = array(
+            "message" => "empty"
+        );
+
+        $json_response = json_encode($response);
+
+        echo $json_response;
     }
     else{
 
@@ -45,11 +51,26 @@
 
         if ($sql_create_post->execute() === TRUE) {
 
-            echo "postCreated";
+            $last_id = mysqli_insert_id($db_con);
+
+            $response = array(
+                "message" => "postCreated",
+                "newPostId" => $last_id
+            );
+
+            $json_response = json_encode($response);
+
+            echo $json_response;
 
         } else {
 
-            echo "error";
+            $response = array(
+                "message" => "error"
+            );
+
+            $json_response = json_encode($response);
+
+            echo $json_response;
         }
 
     }

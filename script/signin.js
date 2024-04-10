@@ -1,5 +1,16 @@
 $(document).ready(function(){
 
+  $("#goSignup").click(function(){
+
+    $('#signinEmail').val('');
+    $('#signinPassword').val('');
+
+    $("#signin").addClass("hidden");
+    $("#signup").removeClass("hidden");
+    $("#pageTitle").html('HOME | SIGNUP');
+
+})
+
     $("#signinBtn").click(function(event){
       event.preventDefault();
 

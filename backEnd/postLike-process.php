@@ -5,9 +5,6 @@
     if (isset($_POST["postId"])){
         $postId = trim(mysqli_real_escape_string($db_con, $_POST["postId"]));
     }
-    if (isset($_POST["postIdforLikeCount"])){
-        $postIdforLikeCount = trim(mysqli_real_escape_string($db_con, $_POST["postIdforLikeCount"]));
-    }
     if (isset($_POST["profileId"])){
         $profileId = trim(mysqli_real_escape_string($db_con, $_POST["profileId"]));
     }
@@ -126,53 +123,7 @@
             echo $json_response;
         }
     }
-    if (isset($postIdforLikeCount)){
-        //get data count from table
-        $sql_get_postlikecount =$db_con-> prepare("SELECT profileId FROM postlike WHERE postId = ?");
-        $sql_get_postlikecount->bind_param('s', $postIdforLikeCount);
-
-        $postIdforLikeCount = $postIdforLikeCount;
     
-        if ($sql_get_postlikecount->execute() === TRUE) {
-        
-            $result = $sql_get_postlikecount->get_result();
-    
-            if ($result->num_rows > 0) {
-    
-                $row_count = mysqli_num_rows($result);
-    
-                $response = array(
-                    "message" => "gotLikeCount",
-                    "likeCount" => $row_count
-                );
-    
-                $json_response = json_encode($response);
-    
-                echo $json_response;
-            }
-            else{
-                $response = array(
-                    "message" => "noLikes",
-                    "likeCount" => "0"
-                );
-    
-                $json_response = json_encode($response);
-    
-                echo $json_response;
-            }
-        
-    
-        } else {
-    
-            $response = array(
-                "message" => "error"
-            );
-
-            $json_response = json_encode($response);
-
-            echo $json_response;
-        }
-    }
 
      
 

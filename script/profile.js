@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+    setTimeout(function() {
+        $("#loadingSpinner").fadeOut();
+    }, 1000);
+
 
     function getCookie(cookieName) {
         const name = cookieName + "=";
@@ -588,6 +592,7 @@ $(document).ready(function(){
 
                 imageUrl = response.proPicImgPath.replace(/\\\//g, '/');
                 msg = response.message;
+                deletedProPic = response.deletedProPic;
                  
 
                 if (msg=="proPicUpdated") {
@@ -618,7 +623,16 @@ $(document).ready(function(){
                     });
                     
                 }
-        }});
+                if (deletedProPic!="") {
+
+                    $.ajax({
+                        url: "backEnd/deletePhysicalFiles-process.php", 
+                        type: "POST",
+                        data: {"deletedProPic" : deletedProPic},
+                    });
+                }
+            }
+    });
 
     });
 

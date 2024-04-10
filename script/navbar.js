@@ -97,6 +97,10 @@ $(document).ready(function(){
     $("#navbarWallbtn").click(function(){
         $(location).attr('href','http://localhost/pabz/wall.php')
     });
+    
+    $("#footerWallbtn").click(function(){
+        $(location).attr('href','http://localhost/pabz/wall.php')
+    });
 
 })
 

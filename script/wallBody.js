@@ -1,14 +1,72 @@
 $(document).ready(function(){
 
+    setTimeout(function() {
+        $("#loadingSpinner").fadeOut();
+    }, 1000);
+
     var wallBody;
     var likeCount;
     var oldComments;
 
+    scrollDistanceforGoUpBtn();
+    WindowWidthforGoUpBtn();
+
     $("#goUpBtn").hide();
 
-    if($(window).width()<769){
-        $("#goUpBtn").hide();
+    $(window).resize(function() {
+        WindowWidthforGoUpBtn();
+    });
+
+    $(window).scroll(function() {
+        scrollDistanceforGoUpBtn();
+    });
+
+    function WindowWidthforGoUpBtn() {
+
+        var windowWidth = $(window).width();
+
+        if(windowWidth<769){
+            $("#goUpBtn").hide();
+        }
+        else{
+            var scrollDistance = $(window).scrollTop();
+            
+            if (scrollDistance > 100) {
+                $("#goUpBtn").fadeIn();
+            }
+            else{
+                $("#goUpBtn").hide();
+            }
+        }
     }
+
+    function scrollDistanceforGoUpBtn() {
+        
+        var scrollDistance = $(window).scrollTop();
+
+        if(scrollDistance > 100){
+            var windowWidth = $(window).width();
+
+            if (windowWidth<769) {
+                $("#goUpBtn").hide();
+            } else {
+                $("#goUpBtn").fadeIn();
+            }
+        }
+        else{
+            $("#goUpBtn").fadeOut();
+        }
+    }
+
+  
+    $("#goUpBtn").click(function() {
+        $("html, body").animate({ scrollTop: 0 });
+
+        setTimeout(function() {
+            $("#goUpBtn").blur();
+        });
+    });
+
 
     function getCookie(cookieName) {
         const name = cookieName + "=";
@@ -102,10 +160,10 @@ $(document).ready(function(){
             console.log("postId ="+postId);
 
             $.ajax({
-            url: "backEnd/postLike-Process.php", 
+            url: "backEnd/postLikeCommentCount-process.php", 
             type: "POST",
             async: false,
-            data: {"postIdforLikeCount" : postId},
+            data: {"postIdforLikeCommentCount" : postId},
             
                 success: function(response){
 
@@ -114,6 +172,7 @@ $(document).ready(function(){
                     var response = JSON.parse(response);
 
                     likeCount = response.likeCount;
+                    commentCount = response.commentCount;
 
                     $.ajax({
                         url: "backEnd/wallBody-Process.php", 
@@ -163,9 +222,9 @@ $(document).ready(function(){
                                 <button class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true"><i class="bi bi-three-dots"></i></button>
 
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                <li><button type="button" class="btn btn-secondary mb-4">Edit Text<i class="bi bi-pencil"></i></button></li>
+                                <li><button id="postTextEditBtn${postIdValue}" name="${postIdValue}"  type="button" class="postTextEditBtn btn btn-secondary mb-4">Edit Text<i class="bi bi-pencil"></i></button></li>
 
-                                <li><button type="button" class="btn btn-secondary" >Delete Post<i class="bi bi-trash3"></i></button></li>
+                                <li><button id="postDeleteBtn${postIdValue}" name="${postIdValue}" type="button" class="postDeleteBtn btn btn-secondary" data-bs-toggle="modal" data-bs-target="#postDeleteModal">Delete Post<i class="bi bi-trash3"></i></button></li>
                                 </ul>
                             </div>`;
                             }
@@ -174,7 +233,7 @@ $(document).ready(function(){
                             }
 
                             
-                            var postHtml =`<div name="${postIdValue}" class="card mb-5">
+                            var postHtml =`<div id="postId${postIdValue}" name="${postIdValue}" class="card mb-5">
 
                             <div class="card-body post-container">
                     
@@ -209,7 +268,7 @@ $(document).ready(function(){
                                     <div class="likeIco"><i class="bi bi-hand-thumbs-up-fill"></i></div>
                                     <h5 id="likeCountPost${postIdValue}">${likeCount}</h5>
                                     <div class="commentIco"><i class="bi bi-chat-right-fill"></i></div>
-                                    <h5>23</h5>
+                                    <h5 id="commentCountPost${postIdValue}">${commentCount}</h5>
                                     </div>
 
                                     <div >
@@ -227,7 +286,8 @@ $(document).ready(function(){
 
                                     <div class="writeComment mb-3">
                                     <img  class="newCommentProPic writeCommentPropic"  alt="Profile Photo">
-                                    <input id="commentPostId${postIdValue}" placeholder="Write a comment..." type="text"><button name="${postIdValue}" class="commentSubmitBtn btn btn-primary"><i class="bi bi-send"></i></button>
+                                    <input class="postCommentInput" id="commentPostId${postIdValue}" name="${postIdValue}"  placeholder="Write a comment..." type="text">
+                                    <button id="commentSubmitBtn${postIdValue}" name="${postIdValue}" class="commentSubmitBtn btn btn-primary" disabled><i class="bi bi-send"></i></button>
                                     </div>
 
                                     <div id="oldCommentsContainer${postIdValue}" class="oldCommentsContainer">
@@ -281,38 +341,6 @@ $(document).ready(function(){
  
     };
 
-    
-
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 100) { 
-            $("#goUpBtn").fadeIn();
-        } else {
-            $("#goUpBtn").fadeOut();
-        }
-    });
-
-  
-    $("#goUpBtn").click(function() {
-        $("html, body").animate({ scrollTop: 0 });
-
-        setTimeout(function() {
-            $("#goUpBtn").blur();
-        });
-    });
-
-
-    $(window).resize(function() {
-
-        if($(window).width()>768){
-            $("#goUpBtn").show();
-        }
-        else{
-            $("#goUpBtn").hide();
-        }
-      });
-
-    
-    
 
     $(document.body).on("click",".postLikeBtn", function(event){
 
@@ -352,10 +380,10 @@ $(document).ready(function(){
 
                     if (msg=="postlikeRowDeleted") {
                         $.ajax({
-                            url: "backEnd/postLike-Process.php", 
+                            url: "backEnd/postLikeCommentCount-process.php", 
                             type: "POST",
                             async: false,
-                            data: {"postIdforLikeCount" : likedPostId},
+                            data: {"postIdforLikeCommentCount" : likedPostId},
                             
                             success: function(response){
                 
@@ -407,10 +435,10 @@ $(document).ready(function(){
 
                     if (msg=="postlikeRowInserted") {
                         $.ajax({
-                            url: "backEnd/postLike-Process.php", 
+                            url: "backEnd/postLikeCommentCount-process.php", 
                             type: "POST",
                             async: false,
-                            data: {"postIdforLikeCount" : likedPostId},
+                            data: {"postIdforLikeCommentCount" : likedPostId},
                             
                             success: function(response){
             
@@ -467,10 +495,10 @@ $(document).ready(function(){
 
                 if (msg=="postlikeRowDeleted") {
                     $.ajax({
-                        url: "backEnd/postLike-Process.php", 
-                        type: "POST",
-                        async: false,
-                        data: {"postIdforLikeCount" : likedPostId},
+                        url: "backEnd/postLikeCommentCount-process.php", 
+                            type: "POST",
+                            async: false,
+                            data: {"postIdforLikeCommentCount" : likedPostId},
                         
                         success: function(response){
             
@@ -549,6 +577,29 @@ $(document).ready(function(){
 
                         oldCommentsContainer = "#oldCommentsContainer"+commentPostId;
 
+                        $.ajax({
+                            url: "backEnd/postLikeCommentCount-process.php", 
+                                type: "POST",
+                                async: false,
+                                data: {"postIdforLikeCommentCount" : commentPostId},
+                            
+                            success: function(response){
+                
+                                console.log(response);
+                
+                                var response = JSON.parse(response);
+                
+                                commentCount = response.commentCount;
+
+                                commentCountContainerId="#commentCountPost"+commentPostId;
+    
+                                if (commentCount!="") {
+                                    $(commentCountContainerId).html(commentCount);
+                                }
+    
+                            }
+                        });
+
                         if (msg == "gotArray") {
 
                             $(commentPostIdValue).val('');
@@ -570,7 +621,7 @@ $(document).ready(function(){
 
                                 if (loggedProfileId == commentProfileId) {
                                     commentDeletebtn = `<div name="${commentPostId}" class="commentDeleteBtnContainer">
-                                        <button name="${commentIdValue}" class="commentDeleteBtn"><i class="bi bi-trash3"></i></button>
+                                        <button name="${commentIdValue}" class="commentDeleteBtn" data-bs-toggle="modal" data-bs-target="#commentDeleteModal"><i class="bi bi-trash3"></i></button>
                                     </div>`;
                                 }
                                 else{
@@ -599,7 +650,11 @@ $(document).ready(function(){
                                 console.log(oldCommentsHTML);
     
                                 $(oldCommentsContainer).append(oldCommentsHTML);
+
+                                
                             });
+
+                            
                         }
                         if (msg == "noComments") {
 
@@ -666,7 +721,7 @@ $(document).ready(function(){
 
                             if (loggedProfileId == commentProfileId) {
                                 commentDeletebtn = `<div name="${commentPostId}" class="commentDeleteBtnContainer">
-                                    <button name="${commentIdValue}" class="commentDeleteBtn"><i class="bi bi-trash3"></i></button>
+                                    <button name="${commentIdValue}" class="commentDeleteBtn" data-bs-toggle="modal" data-bs-target="#commentDeleteModal"><i class="bi bi-trash3"></i></button>
                                 </div>`;
                             }
                             else{
@@ -713,16 +768,39 @@ $(document).ready(function(){
     });
 
 
-    $(document.body).on("click",".commentDeleteBtn", function(event){
+    $(document.body).on("click", ".postCommentInput", function(event) {
+        var postCommentInputId = $(this).attr('id');
+        var postCommentSubmitBtnId = $(this).attr('name');
+    
+        $("#" + postCommentInputId).on("input", function() {
+            var inputValue = $.trim($(this).val());
 
-        var postCommentId = $(this).attr('name');
-        var postId = $(this).parent('div.commentDeleteBtnContainer').attr('name');
-        console.log(" Parent = "+postId);
+            ;
+            if (inputValue !== "") {
+                $("#commentSubmitBtn" + postCommentSubmitBtnId).removeAttr("disabled");
+            } else {
+                $("#commentSubmitBtn" + postCommentSubmitBtnId).attr("disabled", "disabled");
+            }
+        });
+    });
+
+
+    var postCommentId;
+    var postId;
+
+    $(document.body).on("click", ".commentDeleteBtn", function(event) {
+        postCommentId = $(this).attr('name');
+        postId = $(this).parent('div.commentDeleteBtnContainer').attr('name');
 
         setTimeout(function() {
             $(".commentDeleteBtn").blur();
         });
+        
+        return { postCommentId: postCommentId, postId: postId };
+    });
 
+
+    $(document.body).on("click", "#commentDeleteModalbtn", function() {
         $.ajax({
             url: "backEnd/postComment-process.php", 
             type: "POST",
@@ -740,6 +818,29 @@ $(document).ready(function(){
                 console.log(response);
 
                 oldCommentsContainer = "#oldCommentsContainer"+postId;
+
+                $.ajax({
+                    url: "backEnd/postLikeCommentCount-process.php", 
+                        type: "POST",
+                        async: false,
+                        data: {"postIdforLikeCommentCount" : postId},
+                    
+                    success: function(response){
+        
+                        console.log(response);
+        
+                        var response = JSON.parse(response);
+        
+                        commentCount = response.commentCount;
+
+                        commentCountContainerId="#commentCountPost"+postId;
+
+                        if (commentCount!="") {
+                            $(commentCountContainerId).html(commentCount);
+                        }
+
+                    }
+                });
                 
     
                 if (msg == "gotArray") {
@@ -762,7 +863,7 @@ $(document).ready(function(){
 
                         if (loggedProfileId == commentProfileId) {
                             commentDeletebtn = `<div name="${commentPostId}" class="commentDeleteBtnContainer">
-                                <button name="${commentIdValue}" class="commentDeleteBtn"><i class="bi bi-trash3"></i></button>
+                                <button name="${commentIdValue}" class="commentDeleteBtn" data-bs-toggle="modal" data-bs-target="#commentDeleteModal"><i class="bi bi-trash3"></i></button>
                             </div>`;
                         }
                         else{
@@ -801,9 +902,42 @@ $(document).ready(function(){
             }
     
         });
-    
     });
 
- 
 
+    var commentDeleteBtnPostId; 
+
+    $(document.body).on("click", ".postDeleteBtn", function(event) {
+        commentDeleteBtnPostId = $(this).attr('name');
+        return commentDeleteBtnPostId; 
+    });
+
+    $(document.body).on("click", "#postDeleteModalbtn", function() {
+
+        $.ajax({
+            url: "backEnd/postEditDelete-process.php", 
+            type: "POST",
+            data: {"postId" : commentDeleteBtnPostId},
+
+            success: function(response) {
+
+                console.log(response);
+                var response = JSON.parse(response);
+                msg = response.message;
+                deletedPostId = response.deletedPostId;
+                deletediImageName = response.deletediImageName;
+
+                if (msg == "postDeleted") {
+                    $("#postId"+deletedPostId).remove();
+                }
+
+                $.ajax({
+                    url: "backEnd/deletePhysicalFiles-process.php", 
+                    type: "POST",
+                    data: {"deletediImageName" : deletediImageName},
+                });
+            }
+        });
+    });
+    
 });

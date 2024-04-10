@@ -1,13 +1,16 @@
 $(document).ready(function(){
 
-  $("#goSignup").click(function(){
-
-      $("#signin").addClass("hidden");
-      $("#signup").removeClass("hidden");
-      $("#pageTitle").html('HOME | SIGNUP');
-
-  })
+  
   $("#goSignin").click(function(){
+
+    $('#firstName').val('');
+    $('#surname').val('');
+    $('#birthday').val('');
+    $('input[type="radio"]');
+    $('input:radio[name="gender"]').prop('checked', false);
+    $('#email').val('');
+    $('#password').val('');
+    $('#cPassword').val('');
 
       $("#signup").addClass("hidden");
       $("#signin").removeClass("hidden");

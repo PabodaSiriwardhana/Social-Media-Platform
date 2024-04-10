@@ -71,15 +71,51 @@
                 </div>
             </div>
 
+            <div class="modal fade" id="postDeleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Delete</h5>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button id="postDeleteModalbtn" type="button" class="btn btn-primary" data-bs-dismiss="modal">Delete</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="commentDeleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Delete</h5>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button id="commentDeleteModalbtn" type="button" class="btn btn-primary" data-bs-dismiss="modal">Delete</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            
+
             <!-- jquery Script File-->
             <script src="script/jquery-3.7.1.min.js"></script>
 
             <!-- Script Files-->
-            <script src="script/wallBody.js"></script>
-            
             <script src="script/navbar.js"></script>
             
             <script src="script/postCreation.js"></script>
+
+            <script src="script/wallBody.js"></script>
 
 
             <!-- Option 1: Bootstrap Script -->

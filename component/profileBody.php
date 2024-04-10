@@ -7,16 +7,24 @@
 </head>
 <body>
 
+    <div id="loadingSpinner">
+        <div class="spinner-border text-primary" role="status">
+        </div>
+        <div>
+            <h2>Loading...</h2>
+        </div>
+    </div>
+
     <div class="profile-body">
 
-        <div class="col-0 col-sm-0 col-md-2 col-lg-3"></div>
+        <div class="col-0 col-sm-0 col-md-1 col-lg-2 col-xl-3"></div>
 
-        <div class="col-12 col-sm-12 col-md-8 col-lg-6">
+        <div class="mb-5 col-12 col-sm-12 col-md-10 col-lg-8 col-xl-6">
 
             <!-- PROFILE DETAILS -->
-            <div class="card mb-4" id="proDetailsCard">
+            <div class="card mb-4 " id="proDetailsCard">
 
-                <div class="card-body mb-5">
+                <div class="card-body">
 
                     <div class="main-pro-details mb-4">
                         <div class="pro-pic-container mb-0 mt-5">
@@ -215,7 +223,7 @@
 
         </div>
 
-        <div class="col-0 col-sm-0 col-md-2 col-lg-3"></div>
+        <div class="col-0 col-sm-0 col-md-1 col-lg-2 col-xl-3"></div>
 
     </div>
 
