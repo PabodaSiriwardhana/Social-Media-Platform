@@ -1,73 +1,5 @@
 $(document).ready(function(){
 
-    setTimeout(function() {
-        $("#loadingSpinner").fadeOut();
-    }, 1000);
-
-    var wallBody;
-    var likeCount;
-    var oldComments;
-
-    scrollDistanceforGoUpBtn();
-    WindowWidthforGoUpBtn();
-
-    $("#goUpBtn").hide();
-
-    $(window).resize(function() {
-        WindowWidthforGoUpBtn();
-    });
-
-    $(window).scroll(function() {
-        scrollDistanceforGoUpBtn();
-    });
-
-    function WindowWidthforGoUpBtn() {
-
-        var windowWidth = $(window).width();
-
-        if(windowWidth<769){
-            $("#goUpBtn").hide();
-        }
-        else{
-            var scrollDistance = $(window).scrollTop();
-            
-            if (scrollDistance > 100) {
-                $("#goUpBtn").fadeIn();
-            }
-            else{
-                $("#goUpBtn").hide();
-            }
-        }
-    }
-
-    function scrollDistanceforGoUpBtn() {
-        
-        var scrollDistance = $(window).scrollTop();
-
-        if(scrollDistance > 100){
-            var windowWidth = $(window).width();
-
-            if (windowWidth<769) {
-                $("#goUpBtn").hide();
-            } else {
-                $("#goUpBtn").fadeIn();
-            }
-        }
-        else{
-            $("#goUpBtn").fadeOut();
-        }
-    }
-
-  
-    $("#goUpBtn").click(function() {
-        $("html, body").animate({ scrollTop: 0 });
-
-        setTimeout(function() {
-            $("#goUpBtn").blur();
-        });
-    });
-
-
     function getCookie(cookieName) {
         const name = cookieName + "=";
         const decodedCookie = decodeURIComponent(document.cookie);
@@ -85,73 +17,72 @@ $(document).ready(function(){
     };
 
     const loggedProfileId = getCookie('pabz-profileId');
-
-    makeIdArray();
-
-    function makeIdArray(){
-
-        $.ajax({
-
-            url: "backEnd/postIdsArray-process.php", 
-            type: "POST",
-            async: false,
+    console.log(loggedProfileId);
 
 
-            success: function(response){
-                console.log(response);
+    $.ajax({
 
-                var response = JSON.parse(response);
+        url: "backEnd/postIdsArray-process.php", 
+        type: "POST",
+        async: false,
+        data: {"profileId" : loggedProfileId},
 
-                msg = response.message;
 
-                if (msg=="noPosts") {
-                    $("#wallbodyPosts").html('');
-                }
-                if (msg=="gotArray") {
-                    
-                    postIdArray = response.postIdArray;
-                    postIdArrayfromPosts = postIdArray.reverse();
+        success: function(response){
+            console.log(response);
 
-                    console.log(postIdArrayfromPosts);
+            var response = JSON.parse(response);
 
-                    $.ajax({
-    
-                        url: "backEnd/postLike-process.php", 
-                        type: "POST",
-                        async: false,
-                        data: {"checkProfileId" : loggedProfileId},
-                
-                
-                        success: function(response){
-                            console.log(response);
-                
-                            var response = JSON.parse(response);
-                
-                            msg = response.message;
+            msg = response.message;
+            idsArray = response.idsArray;
+            postIdArrayfromPosts = idsArray.reverse();
 
-                            if (msg=="noPostLikes") {
-                                
-                                postIdArrayfromPostLike = [];
+            console.log(idsArray);
 
-                                console.log(postIdArrayfromPostLike);
-        
-                                loadPosts(postIdArrayfromPosts, postIdArrayfromPostLike);
-                            }
-                            if (msg=="gotArray") {
-                                
-                                postIdArrayfromPostLike = response.postIdArray;
-    
-                                console.log(postIdArrayfromPostLike);
-        
-                                loadPosts(postIdArrayfromPosts, postIdArrayfromPostLike);
-                            }
-                        }
-                    });
-                }
+            if (msg=="noPosts") {
+
+                $("#profileBodyPosts").html('');
+
             }
-        });
-    }
- 
+            if (msg=="gotArray") {
+
+                $.ajax({
+    
+                    url: "backEnd/postLike-process.php", 
+                    type: "POST",
+                    async: false,
+                    data: {"checkProfileId" : loggedProfileId},
+            
+                    success: function(response){
+                        console.log(response);
+            
+                        var response = JSON.parse(response);
+            
+                        msg = response.message;
+
+                        if (msg=="noPostLikes") {
+                            
+                            postIdArrayfromPostLike = [];
+
+                            console.log(postIdArrayfromPostLike);
+    
+                            loadPosts(postIdArrayfromPosts, postIdArrayfromPostLike);
+                        }
+                        if (msg=="gotArray") {
+                            
+                            postIdArrayfromPostLike = response.postIdArray;
+
+                            console.log(postIdArrayfromPostLike);
+    
+                            loadPosts(postIdArrayfromPosts, postIdArrayfromPostLike);
+                        }
+                    }
+                });
+                
+            }
+
+    }});
+
 
     function loadPosts(postIdArrayfromPosts, postIdArrayfromPostLike) {
 
@@ -239,11 +170,11 @@ $(document).ready(function(){
                     
                             <div class="post-header col-12 col-sm-12 col-md-12 col-lg-10">
                                 <div class="postPropicContainer">
-                                    <img src="profilePhotoImg/${publisherpropic}" class="publisherPropic"  alt="Profile Photo">
+                                    <img src="profilePhotoImg/${publisherpropic}" class="publisherPropic postProPicInProfile"  alt="Profile Photo">
                                 </div>
                     
                                 <div class="postdetailsContainer">
-                                        <div class="publisherName">${publisherfullName}</div>
+                                        <div class="postProNameInProfile publisherName">${publisherfullName}</div>
                                         <div class="publishedDatetime">${postdatetime}</div>
                                     </div>
 
@@ -285,7 +216,7 @@ $(document).ready(function(){
                                 <div class="card card-body">
 
                                     <div class="writeComment mb-3">
-                                    <img  class="newCommentProPic writeCommentPropic"  alt="Profile Photo">
+                                    <img  class="postProPicInProfile newCommentProPic writeCommentPropic"  alt="Profile Photo">
                                     <input class="postCommentInput" id="commentPostId${postIdValue}" name="${postIdValue}"  placeholder="Write a comment..." type="text">
                                     <button id="commentSubmitBtn${postIdValue}" name="${postIdValue}" class="commentSubmitBtn btn btn-primary" disabled><i class="bi bi-send"></i></button>
                                     </div>
@@ -302,7 +233,7 @@ $(document).ready(function(){
 
                         console.log(postHtml);
 
-                        $("#wallbodyPosts").append(postHtml);
+                        $("#profileBodyPosts").append(postHtml);
                         }
                 
                     });
@@ -333,14 +264,12 @@ $(document).ready(function(){
     
             if (response.message="gotProPic") {
                 
-                $("#postCreationPropic").attr("src", imageUrl);
                 $(".newCommentProPic").attr("src", imageUrl);
                 
             }
         }});
  
     };
-
 
     $(document.body).on("click",".postLikeBtn", function(event){
 
@@ -728,12 +657,12 @@ $(document).ready(function(){
                             var oldCommentsHTML=
                             `<div class="oldComment mb-3">
                                 <div class="oldCommentPropicContainer">
-                                    <img class="oldCommentPropic" src="profilePhotoImg/${commentprofilePic}" alt="Profile Photo">
+                                    <img class="oldCommentPropic oldCommentProPic${commentProfileId}" src="profilePhotoImg/${commentprofilePic}" alt="Profile Photo">
                                 </div>
         
                                 <div class="oldCommentdetailsContainer">
                                     <div class="oldCommenterNameDateTimeContainer">
-                                        <h6>${commenprofileName}</h6>
+                                        <h6 class="oldCommentProName${commentProfileId}">${commenprofileName}</h6>
                                         <p class="commentDateTime">${commentdateTime}</p>
                                     </div>
                                     <div class="oldCommentContainer">
@@ -994,5 +923,5 @@ $(document).ready(function(){
             }
         });
     });
-    
+
 });

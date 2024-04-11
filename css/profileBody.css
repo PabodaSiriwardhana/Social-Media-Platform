@@ -79,7 +79,6 @@
 }
 
 .pro-details-container{
-    width:100% ;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -126,7 +125,6 @@
 }
 
 .settingsBtn-container{
-    width:100% ;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -146,11 +144,11 @@
     align-items: baseline;
 }
 
-button.dropdown-toggle{
+button.settings-dropdown-toggle{
     width: 155px !important;
 }
 
-button.dropdown-toggle::after {
+button.settings-dropdown-toggle::after {
     border: none !important;
 }
 
@@ -177,14 +175,13 @@ button.dropdown-toggle::after {
 }
 
 #newDetailsForm, #newPasswordForm{
-    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
 }
 
-#newDetailsForm label{
+#newDetailsForm label, #newPasswordForm label{
     color: #0984e3;
     font-size: 20px;
     font-weight: bold;
@@ -239,4 +236,393 @@ input[type=radio] {
 }
 .card-body h3{
     color: #3867d6;
+}
+
+#profileBodyPosts{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.postPropicContainer{
+    width: 70px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.publisherPropic{
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+}
+
+.postdetailsContainer{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.post-body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.postText{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.postImagecontainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.postsettingsContainer{
+    width: 30px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.postsettingsContainer ul{
+    width: 100px !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+button.postSettings-dropdown-toggle{
+    background: none;
+    border: none;
+    width: 10px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.dropdown-toggle::after { 
+    content: none; 
+}
+
+.postsettingsContainer ul li button{
+    width: 100% !important;
+    margin-top: -20px !important;
+    height: 40px !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.bi-three-dots{
+    color: black;
+}
+
+.bi-pencil, .bi-trash3{
+    color: white;
+    font-size: 20px;
+}
+
+.publisherName{
+    color: #2c3e50;
+    font-weight: 500;
+    font-size: large;
+}
+
+.publishedDatetime{
+    color: #2c3e50;
+}
+
+.postText{
+    color: #192a56;
+    font-weight: 500;
+    font-size: 25px;
+}
+
+.goUpBox{
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    position: fixed;
+    z-index: 1;
+    bottom: 20px;
+    right: 10px;
+    background-color: #0D6EFD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bi-arrow-up{
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.likeCountBar-container{
+    height: 50px;
+    z-index: 1;
+}
+
+.belowPost{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #C2DBFE;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.likeCountContainer{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.belowPost .likeCountContainer h5{
+    margin-bottom: -2px;
+    margin-right: 5px;
+}
+
+.likeIco, .commentIco{
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background-color: #0D6EFD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.commentIco{
+    margin-left: 5px !important;
+}
+
+.commentIco i.bi-chat-right-fill{
+    color: white;
+    font-size: 15px !important;
+}
+
+.likeIco i.bi-hand-thumbs-up-fill{
+    color: white;
+    font-size: 18px !important;
+}
+
+.icoSeperator{
+    margin: 0 5px 0 5px;
+}
+
+.likeBtn h5, .commentBtn h5{
+    margin-right: 10px;
+}
+
+.likeCountContainer h5{
+    margin-left: 7px;
+}
+
+.bi-hand-thumbs-up-fill, .bi-hand-thumbs-up{
+    color: white;
+    font-size: 20px !important;
+}
+
+.bi-likedIco{
+    color: white !important;
+    font-size: 20px !important;
+}
+
+hr{
+    width: 100%;
+    border: 2px solid #0D6EFD;
+}
+
+.likeBtn{
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    border-radius: 5px;
+    width: 100px;
+}
+
+.commentBtn{
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    border-radius: 5px;
+    width: 130px;
+    
+}
+
+.likeBtn i, .commentBtn i{
+    color: #0D6EFD;
+    font-size: 20px !important;
+}
+
+.likeBtn:hover i, .commentBtn:hover i{
+    color: white !important;
+}
+
+.writeComment{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.oldComment{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.oldCommentPropicContainer{
+    width: 45px;
+    height: 45px;
+}
+
+.commentDeleteBtnContainer{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.commentDeleteBtnContainer button{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: transparent !important;
+    border-radius: 100%;
+}
+
+.commentDeleteBtnContainer button:hover{
+    background-color: rgba(178, 190, 195,1.0) !important;
+}
+
+.commentDeleteBtnContainer button i.bi-trash3{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    color: #0D6EFD;
+    margin-left: -1px;
+}
+
+.Comments div input{
+    width: 100%;
+    border-radius: 50px;
+    padding: 8px 10px;
+    border: #0D6EFD 1px solid !important;
+}
+
+.Comments div input:focus{
+    outline: none !important;
+}
+
+.writeCommentPropic, .oldCommentPropic{
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+
+.Comments div input{
+    width: 100%;
+    flex: 1;
+    border-radius: 50px 0 0 50px;
+    padding: 8px 10px;
+    border: #0D6EFD 1px solid !important;
+}
+
+.Comments div input:focus{
+    outline: #0D6EFD 1px solid !important;
+}
+
+.oldCommentdetailsContainer{
+    margin-left: 7px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 2px 15px;
+    border-radius: 20px;
+    background-color: rgba(116, 185, 255,0.2);
+}
+
+.oldCommentsContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.oldCommenterNameDateTimeContainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.oldCommentContainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.oldCommentContainer p{
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.commentSubmitBtn{
+    width: 55px;
+    height: 44px;
+    border-radius: 0 50px 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.bi-send{
+    font-size: 20px;
+}
+
+.postDeleteBtn{
+    padding-bottom: 35px !important;
+}
+
+.postTextEditBtn{
+    padding-bottom: 32px !important;
+}
+
+input::-webkit-datetime-edit-day-field:focus,
+input::-webkit-datetime-edit-month-field:focus,
+input::-webkit-datetime-edit-year-field:focus {
+    background-color: #0080FF;
+    color: white;
+    outline: none;
 }

@@ -6,6 +6,7 @@
 
      //get data from table
      $sql_create_post =$db_con-> prepare("SELECT * FROM posts WHERE postId = ?");
+     
      $sql_create_post->bind_param('s', $postId);
  
      $postId = $postId;

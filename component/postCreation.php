@@ -15,6 +15,8 @@
           
           <div class="card-body">
 
+          <h3 class="mt-2 mb-2 postcreateheading">Create Post</h3>
+
             <form class=" col-12 col-sm-12 col-md-12 col-lg-10" enctype = 'multipart/form-data'>
               
                 <div class="postPropicAndTxtContainer mb-4 mt-4  col-12 col-sm-12 col-md-12 col-lg-12">

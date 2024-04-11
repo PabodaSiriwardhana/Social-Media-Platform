@@ -54,9 +54,6 @@
     justify-content: center;
     align-items: center;
 }
-.card-body::before{
-    display: none;
-}
 
 .post-header{
     display: flex;
@@ -108,7 +105,7 @@
 
 .dropdown-toggle::after { 
     content: none; 
-    }
+}
 
 .postsettingsContainer{
     width: 30px;
@@ -421,4 +418,12 @@ hr{
 
 .bi-send{
     font-size: 20px;
+}
+
+.postDeleteBtn{
+    padding-bottom: 35px !important;
+}
+
+.postTextEditBtn{
+    padding-bottom: 38px !important;
 }

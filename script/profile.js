@@ -239,10 +239,14 @@ $(document).ready(function(){
                             birthday = response.birthday;
                             gender = response.gender;
                             email = response.email;
+
+                            oldCommentProName = ".oldCommentProName"+proId;
                 
                             if (msg=="gotProDetails") {
                                 
                                 $("#profileName").html(firstName+" "+surname);
+                                $(".postProNameInProfile").html(firstName+" "+surname);
+                                $(oldCommentProName).html(firstName+" "+surname);
                                 $("#profileEmail").html(email);
                                 $("#profileFname").html(firstName);
                                 $("#profileSname").html(surname);
@@ -593,6 +597,8 @@ $(document).ready(function(){
                 imageUrl = response.proPicImgPath.replace(/\\\//g, '/');
                 msg = response.message;
                 deletedProPic = response.deletedProPic;
+
+                oldCommentProPic = ".oldCommentProPic"+profileId;
                  
 
                 if (msg=="proPicUpdated") {
@@ -600,12 +606,18 @@ $(document).ready(function(){
 
                     $("#profilePic").attr("src", imageUrl);
                     $("#profile").attr("src", imageUrl);
+                    $(".postProPicInProfile").attr("src", imageUrl);
+                    $(oldCommentProPic).attr("src", imageUrl);
 
                     $('#propicUpl').val('');
 
                     setTimeout(function() {
                         $("#msgboxContainer").fadeOut();
                     }, 5000);
+
+                    $('html, body').animate({
+                        scrollTop: $("#proDetailsCard").offset().top
+                    });
                     
                 }
                 if (msg=="error") {

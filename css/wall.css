@@ -17,3 +17,12 @@
     font-size: 25px !important;
     font-weight: 600 !important;
 }
+
+#textareaModalInput{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.form-group{
+    width: 100% !important;
+}

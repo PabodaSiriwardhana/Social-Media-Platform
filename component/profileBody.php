@@ -22,11 +22,11 @@
         <div class="mb-5 col-12 col-sm-12 col-md-10 col-lg-8 col-xl-6">
 
             <!-- PROFILE DETAILS -->
-            <div class="card mb-4 " id="proDetailsCard">
+            <div class="card mb-5" id="proDetailsCard">
 
                 <div class="card-body">
 
-                    <div class="main-pro-details mb-4">
+                    <div class="main-pro-details mb-4 col-12 col-sm-12 col-md-12 col-lg-10">
                         <div class="pro-pic-container mb-0 mt-5">
                             
                             <img id="profilePic" alt="Profile Photo" >
@@ -51,11 +51,11 @@
 
                     <div class="mb-2" id="msgboxContainer"></div>
 
-                    <div class="settingsBtn-container mb-4">
+                    <div class="settingsBtn-container mb-4 col-12 col-sm-12 col-md-12 col-lg-10">
                             
                         <div class="btn-group">
                             
-                            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true" >
+                            <button type="button" class="btn btn-secondary dropdown-toggle settings-dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true" >
                                 Profile Settings<i class="bi bi-gear"></i>
                             </button>
 
@@ -69,7 +69,7 @@
                         </div>
                     </div> 
 
-                    <div class="pro-details-container">
+                    <div class="pro-details-container col-12 col-sm-12 col-md-12 col-lg-10">
                         <div class="detail-container">
                             <h4 class="prolbl1">First Name</h4>
                             <h4 class="prolbl2">:</h4>
@@ -132,7 +132,7 @@
 
                     <div class="mb-2" id="proDetailsMsgboxContainer"></div>
 
-                    <form class="form" id="newDetailsForm">
+                    <form class="form col-12 col-sm-12 col-md-10 col-lg-10" id="newDetailsForm">
                         <div class="mb-3 formSec">
                             <label for="newFName" class="form-label">First Name</label>
                             <input type="text" class="form-control" id="newFName" placeholder="Enter Your First Name" required>
@@ -143,7 +143,7 @@
                         </div>
                         <div class="mb-4 formSec">
                             <label for="newBday" class="form-label">Birthday</label>
-                            <input id="newBday" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" placeholder="Enter Your Birthday"  required>
+                            <input id="newBday"  type="text" min="0001-01-01" max="9999-12-31" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" placeholder="Enter Your Birthday"  required>
                         </div>
                         <div class="mb-2 radiobtns">
                             <div class="radio maleRadio">
@@ -181,7 +181,7 @@
 
                 <div class="card-body mb-5">
 
-                    <form class="form" id="newPasswordForm">
+                    <form class="form col-12 col-sm-12 col-md-10 col-lg-10" id="newPasswordForm">
 
                         <h3 class="mt-2 mb-4">Update Your Password</h3>
 
@@ -219,6 +219,8 @@
                 </div>
 
             </div>
+
+            <div id="profileBodyPosts"></div>
 
 
         </div>

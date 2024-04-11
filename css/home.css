@@ -262,3 +262,10 @@ input[type=radio] {
   display: none !important;
 }
 
+input::-webkit-datetime-edit-day-field:focus,
+input::-webkit-datetime-edit-month-field:focus,
+input::-webkit-datetime-edit-year-field:focus {
+    background-color: #0080FF;
+    color: white;
+    outline: none;
+}

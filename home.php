@@ -104,7 +104,7 @@
                     </div>
 
                     <div class="form-field">
-                      <input id="birthday" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-input" placeholder="Birthday" name="birthday" required>
+                      <input id="birthday" type="text" onfocus="(this.type='date')" min="0001-01-01" max="9999-12-31" onblur="(this.type='text')" class="form-input" placeholder="Birthday" name="birthday" required>
                     </div>
 
                     <div class="form-gender-fields">
