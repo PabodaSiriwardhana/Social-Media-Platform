@@ -75,9 +75,9 @@ if (isset($postIdforCount)){
 
                 //get data count from table
                 $sql_get_postCommentcount =$db_con-> prepare("SELECT commentId FROM postComment WHERE postId = ?");
-                $sql_get_postCommentcount->bind_param('s', $postIdforLikeCount);
+                $sql_get_postCommentcount->bind_param('s', $postIdforCount);
 
-                $postIdforLikeCount = $postIdforLikeCount;
+                $postIdforCount = $postIdforCount;
             
                 if ($sql_get_postCommentcount->execute() === TRUE) {
                 

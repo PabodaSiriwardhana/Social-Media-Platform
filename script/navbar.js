@@ -1,5 +1,25 @@
 $(document).ready(function(){
 
+    WindowWidthforNavbar()
+
+    $(window).resize(function() {
+        WindowWidthforNavbar();
+    });
+
+    function WindowWidthforNavbar() {
+
+        var windowWidth = $(window).width();
+
+        if(windowWidth>768){
+            $("#footer-navbar").hide();
+            $("#header-middle").show();
+        }
+        else{
+            $("#footer-navbar").show();
+            $("#header-middle").hide();
+        }
+    }
+
     // Get the value of a specific cookie by its name
     function getCookie(cookieName) {
         const name = cookieName + "=";
@@ -21,17 +41,6 @@ $(document).ready(function(){
     const profileId = getCookie('pabz-profileId');
     console.log(profileId);
 
-    
-    $("#footer-navbar").hide();
-
-    if($(window).width()>768){
-        $("#footer-navbar").hide();
-        $("#header-middle").show();
-    }
-    else{
-        $("#footer-navbar").show();
-        $("#header-middle").hide();
-    }
 
     if (window.location.href.indexOf('http://localhost/pabz/wall.php') !== -1) {
         $('#navbarWallbtn').css({

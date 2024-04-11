@@ -271,7 +271,7 @@ $(document).ready(function(){
                                     <div class="writeComment mb-3">
                                     <img src="profilePhotoImg/${publisherpropic}"  class="newCommentProPic writeCommentPropic"  alt="Profile Photo">
                                     <input class="postCommentInput" id="commentPostId${postIdValue}" name="${postIdValue}"  placeholder="Write a comment..." type="text">
-                                    <button id="commentSubmitBtn${postIdValue}" name="${postIdValue}" class="commentSubmitBtn btn btn-primary" disabled><i class="bi bi-send"></i></button>
+                                    <button type="button"    disabled="disabled" id="commentSubmitBtn${postIdValue}" name="${postIdValue}" class="commentSubmitBtn btn btn-primary" disabled><i class="bi bi-send"></i></button>
                                     </div>
 
                                     <div id="oldCommentsContainer${postIdValue}" class="oldCommentsContainer">

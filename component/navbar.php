@@ -72,7 +72,7 @@
 
     
     <!-- FOOTER START-->
-    <nav class="navbar navbar-dark bg-primary fixed-bottom mt-6" id="footer-navbar">
+    <nav class="navbar navbar-dark bg-primary fixed-bottom mt-6" style="display:none" id="footer-navbar">
 
         <div class="center-icons">
 

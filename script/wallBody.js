@@ -577,32 +577,34 @@ $(document).ready(function(){
 
                         oldCommentsContainer = "#oldCommentsContainer"+commentPostId;
 
-                        $.ajax({
-                            url: "backEnd/postLikeCommentCount-process.php", 
-                                type: "POST",
-                                async: false,
-                                data: {"postIdforLikeCommentCount" : commentPostId},
-                            
-                            success: function(response){
-                
-                                console.log(response);
-                
-                                var response = JSON.parse(response);
-                
-                                commentCount = response.commentCount;
-
-                                commentCountContainerId="#commentCountPost"+commentPostId;
-    
-                                if (commentCount!="") {
-                                    $(commentCountContainerId).html(commentCount);
-                                }
-    
-                            }
-                        });
-
                         if (msg == "gotArray") {
 
+                            $.ajax({
+                                url: "backEnd/postLikeCommentCount-process.php", 
+                                    type: "POST",
+                                    async: false,
+                                    data: {"postIdforLikeCommentCount" : commentPostId},
+                                
+                                success: function(response){
+                    
+                                    console.log(response);
+                    
+                                    var response = JSON.parse(response);
+                    
+                                    commentCount = response.commentCount;
+    
+                                    commentCountContainerId="#commentCountPost"+commentPostId;
+        
+                                    if (commentCount!=="") {
+                                        $(commentCountContainerId).html(commentCount);
+                                    }
+        
+                                }
+                            });
+
                             $(commentPostIdValue).val('');
+
+                            $("#commentSubmitBtn" + commentPostId).attr("disabled", "disabled");
                             
                             $(oldCommentsContainer).html('');
                         
@@ -656,11 +658,6 @@ $(document).ready(function(){
 
                             
                         }
-                        if (msg == "noComments") {
-
-                            $(oldCommentsContainer).html('');
-
-                        }
                     
                     }
         
@@ -672,11 +669,11 @@ $(document).ready(function(){
 
     $(document.body).on("click",".openCommentSection", function(event){
 
-        var commentSectionPostId = $(this).attr('name');
+        var postId = $(this).attr('name');
 
         var clicks = $(this).data('clicks');
 
-        oldCommentsContainer = "#oldCommentsContainer"+commentSectionPostId;
+        oldCommentsContainer = "#oldCommentsContainer"+postId;
 
         setTimeout(function() {
             $(".openCommentSection").blur();
@@ -693,7 +690,7 @@ $(document).ready(function(){
                 url: "backEnd/postComment-process.php", 
                 type: "POST",
                 async: false,
-                data: {"postIdForGetComments" : commentSectionPostId},
+                data: {"postIdForGetComments" : postId},
                 
                 success: function(response){
         
@@ -770,16 +767,16 @@ $(document).ready(function(){
 
     $(document.body).on("click", ".postCommentInput", function(event) {
         var postCommentInputId = $(this).attr('id');
-        var postCommentSubmitBtnId = $(this).attr('name');
+        var postId = $(this).attr('name');
     
         $("#" + postCommentInputId).on("input", function() {
             var inputValue = $.trim($(this).val());
 
             ;
             if (inputValue !== "") {
-                $("#commentSubmitBtn" + postCommentSubmitBtnId).removeAttr("disabled");
+                $("#commentSubmitBtn" + postId).removeAttr("disabled");
             } else {
-                $("#commentSubmitBtn" + postCommentSubmitBtnId).attr("disabled", "disabled");
+                $("#commentSubmitBtn" + postId).attr("disabled", "disabled");
             }
         });
     });
