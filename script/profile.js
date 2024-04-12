@@ -265,7 +265,7 @@ $(document).ready(function(){
             
                                 setTimeout(function() {
                                     $("#msgboxContainer").fadeOut();
-                                }, 5000);
+                                }, 2000);
                                 
                             }
                             if (msg=="error") {
@@ -470,7 +470,7 @@ $(document).ready(function(){
 
                     setTimeout(function() {
                         $("#msgboxContainer").fadeOut();
-                    }, 5000);
+                    }, 2000);
 
                     
                 }
@@ -647,7 +647,7 @@ $(document).ready(function(){
 
                     setTimeout(function() {
                         $("#msgboxContainer").fadeOut();
-                    }, 5000);
+                    }, 2000);
 
                     $('html, body').animate({
                         scrollTop: $("#proDetailsCard").offset().top

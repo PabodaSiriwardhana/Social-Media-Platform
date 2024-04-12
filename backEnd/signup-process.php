@@ -17,7 +17,14 @@
 
     if (empty($firstName) || empty($surname) || empty($birthday) || empty($email) || empty($password) ||  ($gender == "null") ){
 
-        echo "empty";
+        $response = array(
+            "message" => "empty",
+
+        );
+        
+        $json_response = json_encode($response);
+        
+        echo $json_response;
     }
     else{
 

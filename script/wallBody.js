@@ -957,11 +957,11 @@ $(document).ready(function(){
                 existPostText = response.existPostText;
 
                 if (msg == "gotPostText") {
-                    $("#textareaModalInput").html(existPostText);
+                    $("#textareaModalInput").val(existPostText);
                     return postIdforupdatedText;
                 }
                 else{
-                    return  ;
+                    return postIdforupdatedText;
                 }
             }
         });
@@ -970,6 +970,7 @@ $(document).ready(function(){
     $(document.body).on("click", "#postTextEditModalbtn", function() {
 
         updatedPostText = $("#textareaModalInput").val();
+        $("#textareaModalInput").val('');
 
         $.ajax({
             url: "backEnd/postEditDelete-process.php", 
@@ -990,6 +991,7 @@ $(document).ready(function(){
 
                 if (msg == "postTextUpdated") {
                     $(postIdforUpdatedText).html(updatedPostText);
+                    
                 }
             }
         });

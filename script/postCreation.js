@@ -171,7 +171,7 @@ $(document).ready(function(){
 
                     setTimeout(function() {
                         $("#postMsgBox").fadeOut();
-                    }, 5000);
+                    }, 2000);
 
                     console.log(newPostId);
 
@@ -196,7 +196,7 @@ $(document).ready(function(){
                                 posttxt = `<div name="${postIdValue}" class="postText  mt-4 col-12 col-sm-12 col-md-12 col-lg-10">${response.text}</div>`;
                             }
                             else{
-                                posttxt = "";
+                                posttxt = `<div id="postText${postIdValue}" name="${postIdValue}" class="postText  mt-4 col-12 col-sm-12 col-md-12 col-lg-10"></div>`;
                             }
                             if (response.image != null) {
                                 postimg =`<div class="postImagecontainer">

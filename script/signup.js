@@ -76,8 +76,12 @@ $(document).ready(function(){
             $("#pageTitle").html('HOME | SIGNIN');
             $("#signup").addClass("hidden");
             $("#signin").removeClass("hidden");
-            $("#signinEmail").attr("value",email);
+            $("#signinEmail").val(email);
             $("#signinMsgBox").html('<div class="alert alert-success" role="alert">Account created Successfully!!</div>');
+
+            setTimeout(function() {
+              $("#signinMsgBox").fadeOut();
+          }, 2000);
           }
           if(msg=="empty"){
             $("#signupMsgBox").html('<div class="alert alert-warning" role="alert">All the details are required!</div>');
