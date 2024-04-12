@@ -1,5 +1,61 @@
 $(document).ready(function(){
 
+    $("#goUpBtn").hide();
+
+    $(window).resize(function() {
+        WindowWidthforGoUpBtn();
+    });
+
+    $(window).scroll(function() {
+        scrollDistanceforGoUpBtn();
+    });
+
+    function WindowWidthforGoUpBtn() {
+
+        var windowWidth = $(window).width();
+
+        if(windowWidth<769){
+            $("#goUpBtn").hide();
+        }
+        else{
+            var scrollDistance = $(window).scrollTop();
+            
+            if (scrollDistance > 100) {
+                $("#goUpBtn").fadeIn();
+            }
+            else{
+                $("#goUpBtn").hide();
+            }
+        }
+    }
+
+    function scrollDistanceforGoUpBtn() {
+        
+        var scrollDistance = $(window).scrollTop();
+
+        if(scrollDistance > 100){
+            var windowWidth = $(window).width();
+
+            if (windowWidth<769) {
+                $("#goUpBtn").hide();
+            } else {
+                $("#goUpBtn").fadeIn();
+            }
+        }
+        else{
+            $("#goUpBtn").fadeOut();
+        }
+    }
+
+  
+    $("#goUpBtn").click(function() {
+        $("html, body").animate({ scrollTop: 0 });
+
+        setTimeout(function() {
+            $("#goUpBtn").blur();
+        });
+    });
+
     function getCookie(cookieName) {
         const name = cookieName + "=";
         const decodedCookie = decodeURIComponent(document.cookie);

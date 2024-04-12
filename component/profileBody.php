@@ -222,6 +222,8 @@
 
             <div id="profileBodyPosts"></div>
 
+            <div id="goUpBtn" class="goUpBox"  data-bs-toggle="tooltip" data-bs-placement="top" title="Go To Top"><i class="bi bi-arrow-up"></i></div>
+
 
         </div>
 
