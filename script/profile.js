@@ -26,7 +26,7 @@ $(document).ready(function(){
 
 
     $.ajax({
-        url: "profilePhoto-Get-Process.php", 
+        url: "backEnd/profilePhoto-Get-Process.php", 
         type: "POST",
         data: {
             "profileId": profileId
@@ -49,7 +49,7 @@ $(document).ready(function(){
     }});
 
     $.ajax({
-        url: "profileDetails-Get-Process.php", 
+        url: "backEnd/profileDetails-Get-Process.php", 
         type: "POST",
         data: {"profileId" : profileId},
         
@@ -87,7 +87,7 @@ $(document).ready(function(){
     $("#editDetailsBtn").click(function(){
         
         $.ajax({
-            url: "profileDetails-Get-Process.php", 
+            url: "backEnd/profileDetails-Get-Process.php", 
             type: "POST",
             data: {"profileId" : profileId},
             
@@ -143,7 +143,7 @@ $(document).ready(function(){
     $("#resetDetailsFormBtn").click(function(){
  
         $.ajax({
-            url: "profileDetails-Get-Process.php", 
+            url: "backEnd/profileDetails-Get-Process.php", 
             type: "POST",
             data: {"profileId" : profileId},
             
@@ -203,7 +203,7 @@ $(document).ready(function(){
         form_data.append("profileId",profileId);
 
         $.ajax({
-            url: "profileDetails-Update-Process.php", 
+            url: "backEnd/profileDetails-Update-Process.php", 
             type: "POST",
              dataType: 'script',
              cache: false,
@@ -223,7 +223,7 @@ $(document).ready(function(){
                 if (msg=="userDetailsUpdated") {
 
                     $.ajax({
-                        url: "profileDetails-Get-Process.php", 
+                        url: "backEnd/profileDetails-Get-Process.php", 
                         type: "POST",
                         data: {"profileId" : profileId},
                         
@@ -326,6 +326,40 @@ $(document).ready(function(){
                     $("#proDetailsMsgboxContainer").html('<div class="alert alert-danger" role="alert">Already exist an another account with this email!</div>');
                     
                 }
+                if (msg=="invalidDate") {
+                    
+                    $('html, body').animate({
+                        scrollTop: $("#proDetailsEditCard").offset().top
+                    });
+                    
+                    setTimeout(function() {
+                        $("#proDetailsMsgboxContainer").fadeOut();
+                    },);
+                    
+                    setTimeout(function() {
+                        $("#proDetailsMsgboxContainer").fadeIn();
+                    });
+                    
+                    $("#proDetailsMsgboxContainer").html('<div class="alert alert-danger" role="alert">Please enter Birthday correctly!</div>');
+                    
+                }
+                if (msg=="underAge") {
+                    
+                    $('html, body').animate({
+                        scrollTop: $("#proDetailsEditCard").offset().top
+                    });
+                    
+                    setTimeout(function() {
+                        $("#proDetailsMsgboxContainer").fadeOut();
+                    },);
+                    
+                    setTimeout(function() {
+                        $("#proDetailsMsgboxContainer").fadeIn();
+                    });
+                    
+                    $("#proDetailsMsgboxContainer").html('<div class="alert alert-danger" role="alert">Your age must be at least 16 years old!</div>');
+                    
+                }
                 if (msg=="error") {
                     
                     $('html, body').animate({
@@ -401,7 +435,7 @@ $(document).ready(function(){
         form_data.append("profileId",profileId);
 
         $.ajax({
-            url: "profilePassword-Update-Process.php", 
+            url: "backEnd/profilePassword-Update-Process.php", 
             type: "POST",
              dataType: 'script',
              cache: false,
@@ -581,7 +615,7 @@ $(document).ready(function(){
         console.log(file_data);
 
         $.ajax({
-            url: "profilePhoto-Update-Process.php", 
+            url: "backEnd/profilePhoto-Update-Process.php", 
             type: "POST",
              dataType: 'script',
              cache: false,

@@ -315,7 +315,7 @@ $(document).ready(function(){
         });
 
         $.ajax({
-            url: "profilePhoto-Get-Process.php", 
+            url: "backEnd/profilePhoto-Get-Process.php", 
             type: "POST",
             async: false,
             data: {
@@ -537,7 +537,7 @@ $(document).ready(function(){
         });
 
         $.ajax({
-            url: "profileDetails-Get-Process.php", 
+            url: "backEnd/profileDetails-Get-Process.php", 
             type: "POST",
             async: false,
             data: {

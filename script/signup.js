@@ -12,9 +12,9 @@ $(document).ready(function(){
     $('#password').val('');
     $('#cPassword').val('');
 
-      $("#signup").addClass("hidden");
-      $("#signin").removeClass("hidden");
-      $("#pageTitle").html('HOME | SIGNIN');
+    $("#signup").addClass("hidden");
+    $("#signin").removeClass("hidden");
+    $("#pageTitle").html('HOME | SIGNIN');
 
   })
 
@@ -38,7 +38,7 @@ $(document).ready(function(){
 
 
     $.ajax({
-      url: "signup-process.php", 
+      url: "backEnd/signup-process.php", 
       type: "POST",
       data: {
           'firstName':firstName, 
@@ -51,26 +51,47 @@ $(document).ready(function(){
       
       success: function(response){
           console.log(response);
-          if(response=="goSigninPg"){
-              $("#pageTitle").html('HOME | SIGNIN');
-              $("#signup").addClass("hidden");
-              $("#signin").removeClass("hidden");
-              $("#signinEmail").attr("value",email);
-              $("#signinMsgBox").html('<div class="alert alert-success" role="alert">Account created Successfully!!</div>');
+
+          var response = JSON.parse(response);
+
+          msg = response.message;
+          email = response.email;
+
+          if (msg=="underAge") {
+            $("#signupMsgBox").html('<div class="alert alert-danger" role="alert">Your age must be at least 16 years old!</div>');
           }
-          if(response=="empty"){
-              $("#signupMsgBox").html('<div class="alert alert-warning" role="alert">All the details are required!</div>');
+          if (msg=="invalidDate") {
+            $("#signupMsgBox").html('<div class="alert alert-danger" role="alert">Please enter Birthday correctly!</div>');
           }
-          if(response=="6chars"){
+          if(msg=="goSigninPg"){
+            $('#firstName').val('');
+            $('#surname').val('');
+            $('#birthday').val('');
+            $('input[type="radio"]');
+            $('input:radio[name="gender"]').prop('checked', false);
+            $('#email').val('');
+            $('#password').val('');
+            $('#cPassword').val('');
+
+            $("#pageTitle").html('HOME | SIGNIN');
+            $("#signup").addClass("hidden");
+            $("#signin").removeClass("hidden");
+            $("#signinEmail").attr("value",email);
+            $("#signinMsgBox").html('<div class="alert alert-success" role="alert">Account created Successfully!!</div>');
+          }
+          if(msg=="empty"){
+            $("#signupMsgBox").html('<div class="alert alert-warning" role="alert">All the details are required!</div>');
+          }
+          if(msg=="6chars"){
               $("#signupMsgBox").html('<div class="alert alert-warning" role="alert">Password should contain atleast 6 characters!</div>');
           }
-          if(response=="pwMatch"){
+          if(msg=="pwMatch"){
               $("#signupMsgBox").html('<div class="alert alert-danger" role="alert">Password and Confirm Password does not match!</div>');
           }
-          if(response=="exist"){
+          if(msg=="exist"){
               $("#signupMsgBox").html('<div class="alert alert-danger" role="alert">Already exist an account with this email!</div>');
           }
-          if(response=="error"){
+          if(msg=="error"){
               $("#signupMsgBox").html('<div class="alert alert-danger" role="alert">Error creating your account! Please try again.</div>');
           }
         

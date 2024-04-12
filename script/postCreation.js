@@ -27,7 +27,7 @@ $(document).ready(function(){
     console.log(profileId);
 
     $.ajax({
-        url: "profilePhoto-Get-Process.php", 
+        url: "backEnd/profilePhoto-Get-Process.php", 
         type: "POST",
         data: {
             "profileId": profileId
@@ -50,7 +50,7 @@ $(document).ready(function(){
     }});
 
     $.ajax({
-        url: "profileDetails-Get-Process.php", 
+        url: "backEnd/profileDetails-Get-Process.php", 
         type: "POST",
         data: {"profileId" : profileId},
         
@@ -148,7 +148,7 @@ $(document).ready(function(){
         console.log(file_data);
 
         $.ajax({
-            url: "postCreation-process.php", 
+            url: "backEnd/postCreation-process.php", 
             type: "POST",
              dataType: 'script',
              cache: false,
@@ -226,7 +226,7 @@ $(document).ready(function(){
                                 <button class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true"><i class="bi bi-three-dots"></i></button>
 
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                <li><button id="postTextEditBtn${postIdValue}" name="${postIdValue}"  type="button" class="postTextEditBtn btn btn-secondary mb-4">Edit Text<i class="bi bi-pencil"></i></button></li>
+                                <li><button id="postTextEditBtn${postIdValue}" name="${postIdValue}"  type="button" class="postTextEditBtn btn btn-secondary mb-4"  data-bs-toggle="modal" data-bs-target="#postTextEditModal">Edit Text<i class="bi bi-pencil"></i></button></li>
 
                                 <li><button id="postDeleteBtn${postIdValue}" name="${postIdValue}" type="button" class="postDeleteBtn btn btn-secondary" data-bs-toggle="modal" data-bs-target="#postDeleteModal">Delete Post<i class="bi bi-trash3"></i></button></li>
                                 </ul>

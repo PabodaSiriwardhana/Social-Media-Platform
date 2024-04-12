@@ -18,7 +18,7 @@ $(document).ready(function(){
       var password  = $('#signinPassword').val();
 
       $.ajax({
-        url: "signin-process.php", 
+        url: "backEnd/signin-process.php", 
         type: "POST",
         data: {
             'email':email, 

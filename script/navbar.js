@@ -55,7 +55,7 @@ $(document).ready(function(){
 
 
     $.ajax({
-        url: "profilePhoto-Get-Process.php", 
+        url: "backEnd/profilePhoto-Get-Process.php", 
         type: "POST",
         data: {
             "profileId": profileId

@@ -187,10 +187,6 @@ button.settings-dropdown-toggle::after {
     font-weight: bold;
 }
 
-input {
-    color: #0984e3;
-}
-
 .formSec, .form-control{
     width: 100%;
     display: flex;
