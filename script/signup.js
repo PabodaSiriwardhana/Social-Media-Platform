@@ -65,9 +65,11 @@ $(document).ready(function(){
 
           if (msg=="underAge") {
             $("#signupMsgBox").html('<div class="alert alert-danger" role="alert">Your age must be at least 16 years old!</div>');
+            $("#signupMsgBox").show();
           }
           if (msg=="invalidDate") {
             $("#signupMsgBox").html('<div class="alert alert-danger" role="alert">Please enter Birthday correctly!</div>');
+            $("#signupMsgBox").show();
           }
           if(msg=="goSigninPg"){
             $('#firstName').val('');
