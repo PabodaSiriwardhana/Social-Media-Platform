@@ -42,6 +42,15 @@
               <img src="logo/logo-no-background.png" alt="PABZ Logo">
             </div>
 
+            <div id="accDeletenMsgBox">
+              <?php
+                if (isset($_GET["message"]) && $_GET["message"] == "accountDeleted") {
+
+                    echo '<div class="alert alert-success" role="alert">Account deleted successfully!</div>';
+                }
+              ?>
+            </div>
+
             <div id="signinMsgBox"></div>
 
             <div class="signinform-wrapper">
@@ -170,3 +179,4 @@
   }
 
 ?>
+

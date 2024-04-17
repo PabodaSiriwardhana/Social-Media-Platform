@@ -152,6 +152,13 @@ button.settings-dropdown-toggle::after {
     border: none !important;
 }
 
+#deleteAccBtn{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-bottom: 35px;
+}
+
 .bi-pencil, .bi-check2-circle, .bi-x-circle, .bi-gear, .bi-arrow-counterclockwise{
     font-size: 16px !important;
     margin-left: 6px;
@@ -174,14 +181,14 @@ button.settings-dropdown-toggle::after {
     z-index: 1;
 }
 
-#newDetailsForm, #newPasswordForm{
+#newDetailsForm, #newPasswordForm, #deleteAccForm{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
 }
 
-#newDetailsForm label, #newPasswordForm label{
+#newDetailsForm label, #newPasswordForm label, #deleteAccForm label{
     color: #0984e3;
     font-size: 20px;
     font-weight: bold;
@@ -232,6 +239,10 @@ input[type=radio] {
 }
 .card-body h3{
     color: #3867d6;
+}
+
+#deleteAccForm label{
+    font-size: larger;
 }
 
 #profileBodyPosts{
@@ -330,7 +341,7 @@ button.postSettings-dropdown-toggle{
     color: black;
 }
 
-.bi-pencil, .bi-trash3{
+.bi-pencil, .bi-trash3, .bi-person-x{
     color: white;
     font-size: 20px;
 }

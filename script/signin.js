@@ -5,11 +5,21 @@ $(document).ready(function(){
     $('#signinEmail').val('');
     $('#signinPassword').val('');
 
+    $('#signinMsgBox').hide();
+
     $("#signin").addClass("hidden");
     $("#signup").removeClass("hidden");
     $("#pageTitle").html('HOME | SIGNUP');
 
-})
+  })
+
+  if ($('#accDeletenMsgBox').html !=="") {
+    setTimeout(function() {
+      $('#accDeletenMsgBox').fadeOut();
+    }, 3000);
+  }
+
+  $('#signinMsgBox').hide();
 
     $("#signinBtn").click(function(event){
       event.preventDefault();

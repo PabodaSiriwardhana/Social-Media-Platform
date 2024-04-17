@@ -158,6 +158,23 @@
                 </div>
             </div>
 
+            <div class="modal fade" id="deleteAccModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Delete Your Account</h5>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button id="deleteAccModalbtn" type="button" class="btn btn-primary" data-bs-dismiss="modal">Delete</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
                 <!-- jquery Script File-->
                 <script src="script/jquery-3.7.1.min.js"></script>
 

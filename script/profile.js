@@ -82,6 +82,7 @@ $(document).ready(function(){
     $("#proDetailsEditCard").hide();
     $("#propicEditCard").hide();
     $("#pwEditCard").hide();
+    $("#deleteAccCard").hide();
 
     // EDIT DETAILS
     $("#editDetailsBtn").click(function(){
@@ -121,6 +122,8 @@ $(document).ready(function(){
         }});
         
         $("#pwEditCard").hide();
+        $("#propicEditCard").hide();
+        $("#deleteAccCard").hide();
         $("#proDetailsEditCard").show();
 
         $('html, body').animate({
@@ -390,6 +393,8 @@ $(document).ready(function(){
         
         $("#pwEditCard").show();
         $("#proDetailsEditCard").hide();
+        $("#deleteAccCard").hide();
+        $("#propicEditCard").hide();
         $("#proPWMsgboxContainer").hide();
 
         $('html, body').animate({
@@ -568,6 +573,9 @@ $(document).ready(function(){
     $("#propicUpl").change(function(){
         readURL(this);
         $("#uplProPicBtn").hide();
+        $("#deleteAccCard").hide();
+        $("#proDetailsEditCard").hide();
+        $("#pwEditCard").hide();
         $("#propicEditCard").show();
 
         $('html, body').animate({
@@ -679,6 +687,105 @@ $(document).ready(function(){
                 }
             }
     });
+
+    });
+
+    // DELETE ACCOUNT
+    $("#deleteAccBtn").click(function(){
+        readURL(this);
+        $("#pwEditCard").hide();
+        $("#proDetailsEditCard").hide();
+        $("#propicEditCard").hide();
+        $("#deleteAccMsgboxContainer").hide();
+        $("#deleteAccCard").show();
+
+        $('html, body').animate({
+            scrollTop: $("#deleteAccCard").offset().top
+        });
+
+    });
+
+    $("#cancelDeleteAccBtn").click(function(){
+        readURL(this);
+        $("#pwEditCard").hide();
+        $("#proDetailsEditCard").hide();
+        $("#propicEditCard").hide();
+        $("#deleteAccMsgboxContainer").hide();
+        $("#deleteAccCard").hide();
+
+        $('#confPW').val('');
+
+        $('html, body').animate({
+            scrollTop: $("#proDetailsCard").offset().top
+        });
+
+    });
+
+    function removeCookie(cookieName, options) {
+        options = options || {};
+        document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=' + (options.path || '/');
+    }
+
+
+    $("#deleteAccModalbtn").click(function(event){
+        event.preventDefault();
+
+        var pwConfirmation = $('#confPW').val();
+
+        $.ajax({
+            url: "backEnd/deleteAccount-process.php", 
+            type: "POST",
+            data: {"profileId" : profileId,
+                    "password" : pwConfirmation
+                    },
+            
+            success: function(response){
+                console.log(response);
+
+                var response = JSON.parse(response);
+
+                msg = response.message;
+
+                if (msg=="accountDeleted") {
+
+                    removeCookie('pabz-profileId', { path: '/' });
+
+
+                    window.location.href = 'http://localhost/pabz/home.php?message=accountDeleted';
+                    
+                    
+                    
+                }
+                if (msg=="error") {
+                    $("#deleteAccMsgboxContainer").html('<div class="alert alert-danger" role="alert">Something went wrong. Please try again!</div>');
+
+                    $('#confPW').val('');
+                    
+                    setTimeout(function() {
+                        $("#deleteAccMsgboxContainer").fadeOut();
+                    },);
+                    
+                    setTimeout(function() {
+                        $("#deleteAccMsgboxContainer").fadeIn();
+                    });
+                }
+                if (msg=="pwIncorrect") {
+                    $("#deleteAccMsgboxContainer").html('<div class="alert alert-danger" role="alert">Password is incorrect!</div>');
+
+                    $('#confPW').val('');
+
+                    
+                    setTimeout(function() {
+                        $("#deleteAccMsgboxContainer").fadeOut();
+                    },);
+                    
+                    setTimeout(function() {
+                        $("#deleteAccMsgboxContainer").fadeIn();
+                    });
+                    
+                }
+            }
+         });
 
     });
 

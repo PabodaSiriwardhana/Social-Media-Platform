@@ -12,6 +12,8 @@ $(document).ready(function(){
     $('#password').val('');
     $('#cPassword').val('');
 
+    $('#signupMsgBox').hide();
+
     $("#signup").addClass("hidden");
     $("#signin").removeClass("hidden");
     $("#pageTitle").html('HOME | SIGNIN');

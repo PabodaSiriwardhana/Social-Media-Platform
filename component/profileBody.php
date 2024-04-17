@@ -65,6 +65,8 @@
 
                                 <li><button id="editPwBtn" type="button" class="btn btn-secondary"><p>Change Password</p><i class="bi bi-pencil"></i></button></li>
 
+                                <li><button id="deleteAccBtn" type="button" class="btn btn-secondary mt-2"><p>Delete Account</p><i class="bi bi-person-x"></i></button></li>
+
                             </ul>
                         </div>
                     </div> 
@@ -214,6 +216,39 @@
                         <button id="resetPWFormBtn" type="button" class="btn btn-secondary">Reset<i class="bi bi-arrow-counterclockwise"></i></button>
 
                         <button id="cancelUpdatePwBtn" type="button" class="btn btn-secondary">Cancel<i class="bi bi-x-circle"></i></button>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- DELETE ACCOUNT -->
+            <div class="card mb-5" id="deleteAccCard">
+
+                <div class="card-body mb-5">
+
+                    <form class="form col-12 col-sm-12 col-md-10 col-lg-10" id="deleteAccForm">
+
+                        <h3 class="mt-2 mb-4">Delete Your Account</h3>
+
+                        <div class="mb-2" id="deleteAccMsgboxContainer"></div>
+
+                        <div class="mb-3 formSec">
+                            <label for="confPW" class="form-label mb-3">Enter Password To Confirm</label>
+                            <input type="password" class="form-control" id="confPW" placeholder="Enter Password" required>
+                        </div>
+
+                        
+
+                    </form>
+
+                    <div class="updateBtn-container mb-3">
+                        <button id="updatePwBtn" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#deleteAccModal">Delete Account <i class="bi bi-person-x"></i></button>
+                    </div>
+
+                    <div class="cancelResetUpdateBtn-container mb-3">
+
+                        <button id="cancelDeleteAccBtn" type="button" class="btn btn-secondary">Cancel<i class="bi bi-x-circle"></i></button>
                     </div>
 
                 </div>
