@@ -15,7 +15,7 @@
     $today = new DateTime();
 
 
-    if (empty($firstName) || empty($surname) || empty($birthday) || empty($email) || empty($password) ||  ($gender == "null") ){
+    if (empty($firstName) || empty($surname) || empty($birthday) || empty($email) || empty($password) || empty($cPassword) ||  ($gender == "null") ){
 
         $response = array(
             "message" => "empty",
