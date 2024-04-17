@@ -12,6 +12,9 @@ $(document).ready(function(){
     $('#password').val('');
     $('#cPassword').val('');
 
+    $('#signinEmail').val('');
+    $('#signinPassword').val('');
+
     $('#signupMsgBox').hide();
     $('#signinMsgBox').hide();
 

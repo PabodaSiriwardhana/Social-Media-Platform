@@ -5,6 +5,15 @@ $(document).ready(function(){
     $('#signinEmail').val('');
     $('#signinPassword').val('');
 
+    $('#firstName').val('');
+    $('#surname').val('');
+    $('#birthday').val('');
+    $('input[type="radio"]');
+    $('input:radio[name="gender"]').prop('checked', false);
+    $('#email').val('');
+    $('#password').val('');
+    $('#cPassword').val('');
+
     $('#signinMsgBox').hide();
     $('#signupMsgBox').hide();
 
