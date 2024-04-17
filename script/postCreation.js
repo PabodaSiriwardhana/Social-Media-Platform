@@ -167,7 +167,7 @@ $(document).ready(function(){
                 
                 if(msg=="postCreated"){
                     $("#postMsgBox").show();
-                    $("#postMsgBox").html('<div class="alert alert-success" role="alert">Your post published on the wall !!</div>');
+                    $("#postMsgBox").html('<div class="alert alert-success" role="alert">Your post published on the wall!</div>');
 
                     setTimeout(function() {
                         $("#postMsgBox").fadeOut();
