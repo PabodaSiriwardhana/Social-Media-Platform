@@ -6,6 +6,7 @@ $(document).ready(function(){
     $('#signinPassword').val('');
 
     $('#signinMsgBox').hide();
+    $('#signupMsgBox').hide();
 
     $("#signin").addClass("hidden");
     $("#signup").removeClass("hidden");
@@ -41,12 +42,15 @@ $(document).ready(function(){
           }
             if(response=="empty"){
                 $("#signinMsgBox").html('<div class="alert alert-warning" role="alert">Both E-mail and Password are required!</div>');
+                $("#signinMsgBox").show();
             }
             if(response=="pwIncorrect"){
-                $("#signinMsgBox").html('<div class="alert alert-danger" role="alert">The password that you have entered is incorrect!</div>');
+                $("#signinMsgBox").html('<div class="alert alert-danger" role="alert">Password is incorrect!</div>');
+                $("#signinMsgBox").show();
             }
             if(response=="exist"){
                 $("#signinMsgBox").html('<div class="alert alert-danger" role="alert">Account not found!</div>');
+                $("#signinMsgBox").show();
             }
         
       }});

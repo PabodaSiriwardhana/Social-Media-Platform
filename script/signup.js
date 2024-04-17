@@ -13,6 +13,7 @@ $(document).ready(function(){
     $('#cPassword').val('');
 
     $('#signupMsgBox').hide();
+    $('#signinMsgBox').hide();
 
     $("#signup").addClass("hidden");
     $("#signin").removeClass("hidden");
@@ -81,24 +82,31 @@ $(document).ready(function(){
             $("#signinEmail").val(email);
             $("#signinMsgBox").html('<div class="alert alert-success" role="alert">Account created Successfully!!</div>');
 
+            $("#signinMsgBox").show();
+
             setTimeout(function() {
               $("#signinMsgBox").fadeOut();
-          }, 2000);
+            }, 2000);
           }
           if(msg=="empty"){
             $("#signupMsgBox").html('<div class="alert alert-warning" role="alert">All the details are required!</div>');
+            $("#signupMsgBox").show();
           }
           if(msg=="6chars"){
               $("#signupMsgBox").html('<div class="alert alert-warning" role="alert">Password should contain atleast 6 characters!</div>');
+              $("#signupMsgBox").show();
           }
           if(msg=="pwMatch"){
               $("#signupMsgBox").html('<div class="alert alert-danger" role="alert">Password and Confirm Password does not match!</div>');
+              $("#signupMsgBox").show();
           }
           if(msg=="exist"){
               $("#signupMsgBox").html('<div class="alert alert-danger" role="alert">Already exist an account with this email!</div>');
+              $("#signupMsgBox").show();
           }
           if(msg=="error"){
               $("#signupMsgBox").html('<div class="alert alert-danger" role="alert">Error creating your account! Please try again.</div>');
+              $("#signupMsgBox").show();
           }
         
       }});
