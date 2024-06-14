@@ -84,6 +84,7 @@ $(document).ready(function(){
         return "";
     };
 
+
     const loggedProfileId = getCookie('pabz-profileId');
 
     makeIdArray();
@@ -737,7 +738,7 @@ $(document).ready(function(){
                                         <p class="commentDateTime">${commentdateTime}</p>
                                     </div>
                                     <div class="oldCommentContainer">
-                                        <p name="${commentIdValue}">${comment}</p>
+                                        <p class="commentHolder" name="${commentIdValue}">${comment}</p>
                                         ${commentDeletebtn}
                                     </div>
 
@@ -770,15 +771,28 @@ $(document).ready(function(){
         var postId = $(this).attr('name');
     
         $("#" + postCommentInputId).on("input", function() {
-            var inputValue = $.trim($(this).val());
+            var inputValue = $(this).val();
+            inputValue = inputValue.replace(/[\r\n]/g, "");
+            inputValue = inputValue.trim();
 
-            ;
+            
             if (inputValue !== "") {
                 $("#commentSubmitBtn" + postId).removeAttr("disabled");
             } else {
                 $("#commentSubmitBtn" + postId).attr("disabled", "disabled");
             }
         });
+    });
+
+    var postCommentInput = $(".postCommentInput");
+    var limitChars = 254;
+
+    postCommentInput.on("input", function() {
+        // Check character limit
+        if (postCommentInput.val().trim().length > limitChars) {
+            alert('You have reached the maximum character limit.');
+        }
+
     });
 
 
@@ -939,6 +953,16 @@ $(document).ready(function(){
 
     var postIdforupdatedText ;
 
+    var textareaModalInput = $("#textareaModalInput");
+
+    textareaModalInput.on("input", function() {
+        // Check character limit
+        if (textareaModalInput.val().trim().length > limitChars) {
+            alert('You have reached the maximum character limit.');
+        }
+
+    });
+
     $(document.body).on("click", ".postTextEditBtn", function(event) {
         postTextEditPostId = $(this).attr('name');
         console.log(postTextEditPostId);
@@ -957,6 +981,7 @@ $(document).ready(function(){
                 existPostText = response.existPostText;
 
                 if (msg == "gotPostText") {
+                    existPostText = existPostText.replace(/<br>/g, "\n");
                     $("#textareaModalInput").val(existPostText);
                     return postIdforupdatedText;
                 }
@@ -969,7 +994,8 @@ $(document).ready(function(){
 
     $(document.body).on("click", "#postTextEditModalbtn", function() {
 
-        updatedPostText = $("#textareaModalInput").val();
+        updatedPostText = $("#textareaModalInput").val().replace("\n", "<br>");
+        updatedPostText = updatedPostText.replace(/[\n]/g, "<br>");
         $("#textareaModalInput").val('');
 
         $.ajax({

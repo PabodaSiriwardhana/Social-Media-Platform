@@ -26,6 +26,38 @@ $(document).ready(function(){
     const profileId = getCookie('pabz-profileId');
     console.log(profileId);
 
+    var textarea = $("#postTxtArea");
+    var limitRows = 20;
+    var limitChars = 254;
+    var messageLastScrollHeight = textarea.prop("scrollHeight");
+
+    textarea.on("input", function() {
+        // Check character limit
+        if (textarea.val().trim().length > limitChars) {
+            alert('You have reached the maximum character limit.');
+            textarea.val(textarea.val().substring(0, limitChars));
+        }
+
+        // Update row count
+        var rows = Math.min(limitRows, (textarea.prop("scrollHeight") / parseInt(textarea.css("line-height"))));
+        textarea.attr("rows", rows);
+
+        // Adjust textarea height
+        textarea.css("height", ""); // Reset height
+        textarea.css("height", textarea.prop("scrollHeight") + "px");
+    });
+
+    var postCommentInput = $(".postCommentInput");
+
+    postCommentInput.on("input", function() {
+        // Check character limit
+        if (postCommentInput.val().trim().length > limitChars) {
+            alert('You have reached the maximum character limit.');
+        }
+
+    });
+
+
     $.ajax({
         url: "backEnd/profilePhoto-Get-Process.php", 
         type: "POST",
@@ -115,9 +147,28 @@ $(document).ready(function(){
     });
 
     $('#postTxtArea').bind("keyup input paste", function() {
-        if ($(this).val().length > 0 || $('#postUplImg').val() != '') {
+
+        var postTxt = $('#postTxtArea').val();
+        var postTxt = postTxt.replace(/[\r\n]/g, "");
+        var postTxt = postTxt.trim();
+
+        if (postTxt.length > 0 || $('#postUplImg').val() != '') {
             $("#publishBtn").show();
         } else {
+            $("#publishBtn").hide();
+        }
+    });
+
+    $("#postTxtArea").blur(function(event){
+        event.preventDefault();
+
+        var postTxt = $('#postTxtArea').val();
+        var postTxt = postTxt.replace(/[\r\n]/g, "");
+        var postTxt = postTxt.trim();
+
+        if (postTxt=="") {
+            $('#postTxtArea').val('');
+            textarea.css("height", "");
             $("#publishBtn").hide();
         }
     });
@@ -133,7 +184,11 @@ $(document).ready(function(){
         $("#upImgLbl").show();
         $("#removePhotoBtn").hide();
 
-        var postTxt  = $('#postTxtArea').val();
+        textarea.css("height", "");
+
+        var postTxt = $('#postTxtArea').val();
+        var postTxt = postTxt.replace(/[\r\n]/g, "<br>");
+        // var postTxt = postTxt.replace(/(.{30})/g, "$1<br>");
         var file_data = $('#postUplImg').prop('files')[0];
 
         fullName = firstName+" "+surname;
@@ -193,7 +248,7 @@ $(document).ready(function(){
                             publisherfullName = response.fullName;
                             publisherpropic = response.profilePic;
                             if (response.text != null) {
-                                posttxt = `<div name="${postIdValue}" class="postText  mt-4 col-12 col-sm-12 col-md-12 col-lg-10">${response.text}</div>`;
+                                posttxt = `<div id="postText${postIdValue}" name="${postIdValue}" class="postText  mt-4 col-12 col-sm-12 col-md-12 col-lg-10">${response.text}</div>`;
                             }
                             else{
                                 posttxt = `<div id="postText${postIdValue}" name="${postIdValue}" class="postText  mt-4 col-12 col-sm-12 col-md-12 col-lg-10"></div>`;
@@ -292,6 +347,9 @@ $(document).ready(function(){
                     });
                 }
                 if(msg=="empty"){
+
+                    textarea.css("height", "");
+
                     $("#postMsgBox").show();
                     $("#postMsgBox").html('<div class="alert alert-warning" role="alert">Please add some content to your post before publishing!</div>');
 
@@ -302,8 +360,15 @@ $(document).ready(function(){
                     setTimeout(function() {
                         $("#postMsgBox").fadeIn();
                     });
+
+                    setTimeout(function() {
+                        $("#postMsgBox").fadeOut();
+                    }, 2000);
                 }
                 if(msg=="error"){
+
+                    textarea.css("height", "");
+
                     $("#postMsgBox").show();
                     $("#postMsgBox").html('<div class="alert alert-danger" role="alert">Something went wrong. Try again!</div>');
 
@@ -314,9 +379,14 @@ $(document).ready(function(){
                     setTimeout(function() {
                         $("#postMsgBox").fadeIn();
                     });
+
+                    setTimeout(function() {
+                        $("#postMsgBox").fadeOut();
+                    }, 2000);
                 }
                 $('#postUplImg').val('');
                 $('#postTxtArea').val('');
+                textarea.css("height", "");
                 
         }});
 

@@ -924,6 +924,27 @@ $(document).ready(function(){
 
     var postIdforupdatedText ;
 
+    var textareaModalInput = $("#textareaModalInput");
+    var limitChars = 254;
+
+    textareaModalInput.on("input", function() {
+        // Check character limit
+        if (textareaModalInput.val().trim().length > limitChars) {
+            alert('You have reached the maximum character limit.');
+        }
+
+    });
+
+    var postCommentInput = $(".postCommentInput");
+
+    postCommentInput.on("input", function() {
+        // Check character limit
+        if (postCommentInput.val().trim().length > limitChars) {
+            alert('You have reached the maximum character limit.');
+        }
+
+    });
+
     $(document.body).on("click", ".postTextEditBtn", function(event) {
         postTextEditPostId = $(this).attr('name');
         console.log(postTextEditPostId);

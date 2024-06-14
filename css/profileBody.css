@@ -360,6 +360,7 @@ button.postSettings-dropdown-toggle{
     color: #192a56;
     font-weight: 500;
     font-size: 25px;
+    overflow-x: auto;
 }
 
 .goUpBox{
@@ -494,8 +495,9 @@ hr{
 .oldComment{
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
+    overflow-x: auto;
 }
 
 .oldCommentPropicContainer{

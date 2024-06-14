@@ -26,7 +26,7 @@
 
                   <div class="postTxtContainer">
                     <div class="form-floating">
-                      <textarea class="form-control" id="postTxtArea"></textarea>
+                      <textarea class="form-control" id="postTxtArea" rows="1"></textarea>
                       <label id="postTxtArealbl" for="postTxtArea"></label>
                     </div>
                   </div>
